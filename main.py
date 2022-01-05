@@ -10,7 +10,8 @@ from pygame.locals import (
     K_ESCAPE,
     KEYDOWN,
     QUIT,
-    MOUSEBUTTONDOWN
+    MOUSEBUTTONDOWN,
+    MOUSEBUTTONUP
 )
 
 logging.basicConfig(
@@ -55,7 +56,16 @@ while running:
     for event in pygame.event.get():
         if event.type == MOUSEBUTTONDOWN:
             x,y = pygame.mouse.get_pos()
-            log.debug("clicked x: %s, y: %s",x,y)
+            log.debug("clicked  x: %s, y: %s",x,y)
+            for piece in all_pieces:
+                if piece.rect.collidepoint(x, y):
+                    piece.clicked = True
+                    log.debug("clicked on: %s", type(piece).__name__)
+        elif event.type == MOUSEBUTTONUP:
+            x,y = pygame.mouse.get_pos()
+            for piece in all_pieces:
+                piece.clicked = False
+            log.debug("released x: %s, y: %s", x,y)
         # Did the user hit a key?
         elif event.type == KEYDOWN:
             # Was it the Escape key? If so, stop the loop.
@@ -64,6 +74,12 @@ while running:
        # Did the user click the window close button? If so, stop the loop.
         elif event.type == QUIT:
             running = False
+    
+    for piece in all_pieces:
+        if piece.clicked == True:
+            x,y = pygame.mouse.get_pos()
+            piece.rect.center=(x,y)
+            
     pygame.display.flip()
     screen.fill(BACKGROUND_COLOR)
     draw_board(screen, square, SQUARE_COLOR, SCREEN_SIZE)

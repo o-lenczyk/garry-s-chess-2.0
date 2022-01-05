@@ -10,6 +10,7 @@ class Pawn(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (size,size))
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
+        self.clicked = False
 
 class King(pygame.sprite.Sprite):
     def __init__(self,x,y,color,size):
@@ -21,6 +22,7 @@ class King(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (size,size))
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
+        self.clicked = False
 
 class Queen(pygame.sprite.Sprite):
     def __init__(self,x,y,color,size):
@@ -32,6 +34,7 @@ class Queen(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (size,size))
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
+        self.clicked = False
 
 class Rook(pygame.sprite.Sprite):
     def __init__(self,x,y,color,size):
@@ -43,6 +46,7 @@ class Rook(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (size,size))
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
+        self.clicked = False
 
 class Knight(pygame.sprite.Sprite):
     def __init__(self,x,y,color,size):
@@ -54,6 +58,7 @@ class Knight(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (size,size))
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
+        self.clicked = False
 
 class Bishop(pygame.sprite.Sprite):
     def __init__(self,x,y,color,size):
@@ -65,3 +70,4 @@ class Bishop(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (size,size))
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
+        self.clicked = False
