@@ -20,8 +20,8 @@ board.draw_pieces()
 # Run until the user asks to quit
 # Variable to keep the main loop running
 running = True
-conf.permute_square_names()
 
+conf.permute_square_names()
 conf.compute_square_centers()
 
 # Main loop

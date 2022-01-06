@@ -1,5 +1,6 @@
 import pygame
 import conf
+import numpy as np
 
 
 def pick_piece():
@@ -18,12 +19,28 @@ def move_focused_piece_to_cursor():
             piece.rect.center = (x, y)
 
 
+def closest_square(x, y):
+    mouse_position = [(x, y)]
+    diffs = np.abs(np.array(conf.square_centers) - np.array(mouse_position))
+    dists = np.sum(diffs, axis=1)
+    closest_point_index = np.argmin(dists)
+    return closest_point_index
+
+
 def release_piece():
     x, y = pygame.mouse.get_pos()
-    check_for_captures(x, y)
+    closest_square_index = closest_square(x, y)
+
+    conf.log.debug(
+        "closest square to release is %s", conf.square_names[closest_square_index]
+    )
+    x, y = conf.square_centers[closest_square_index]
+
     for piece in conf.all_pieces:
-        piece.clicked = False
-    conf.log.debug("released x: %s, y: %s", x, y)
+        if piece.clicked == True:
+            piece.rect.center = (x, y)
+            check_for_captures(x, y)
+            piece.clicked = False
 
 
 def check_for_captures(x, y):
