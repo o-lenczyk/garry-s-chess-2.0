@@ -20,6 +20,9 @@ board.draw_pieces()
 # Run until the user asks to quit
 # Variable to keep the main loop running
 running = True
+conf.permute_square_names()
+
+conf.compute_square_centers()
 
 # Main loop
 while running:
@@ -37,13 +40,13 @@ while running:
         elif event.type == QUIT:
             running = False
 
-    moves.move_to_cursor()
+    moves.move_focused_piece_to_cursor()
 
     pygame.display.flip()
     conf.screen.fill(conf.BACKGROUND_COLOR)
     board.draw_board()
     conf.all_pieces.draw(conf.screen)
     # all_pieces.update()
-    conf.clock.tick(60)
+    conf.clock.tick(conf.FRAMERATE)
 
 pygame.quit()

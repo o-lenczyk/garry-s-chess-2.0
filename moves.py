@@ -11,7 +11,7 @@ def pick_piece():
             conf.log.debug("clicked on: %s %s", piece.color, type(piece).__name__)
 
 
-def move_to_cursor():
+def move_focused_piece_to_cursor():
     for piece in conf.all_pieces:
         if piece.clicked == True:
             x, y = pygame.mouse.get_pos()

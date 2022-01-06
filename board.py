@@ -8,36 +8,12 @@ def draw_board():
     conf.square.fill(conf.SQUARE_COLOR)
     rect = conf.square.get_rect()
 
-    for i in [0, 2, 4, 6]:
-        conf.screen.blit(conf.square, [i * (conf.SCREEN_SIZE / 8), 0])
-    for i in [1, 3, 5, 7]:
-        conf.screen.blit(
-            conf.square, [i * (conf.SCREEN_SIZE / 8), (conf.SCREEN_SIZE / 8)]
-        )
-    for i in [0, 2, 4, 6]:
-        conf.screen.blit(
-            conf.square, [i * (conf.SCREEN_SIZE / 8), 2 * (conf.SCREEN_SIZE / 8)]
-        )
-    for i in [1, 3, 5, 7]:
-        conf.screen.blit(
-            conf.square, [i * (conf.SCREEN_SIZE / 8), 3 * (conf.SCREEN_SIZE / 8)]
-        )
-    for i in [0, 2, 4, 6]:
-        conf.screen.blit(
-            conf.square, [i * (conf.SCREEN_SIZE / 8), 4 * (conf.SCREEN_SIZE / 8)]
-        )
-    for i in [1, 3, 5, 7]:
-        conf.screen.blit(
-            conf.square, [i * (conf.SCREEN_SIZE / 8), 5 * (conf.SCREEN_SIZE / 8)]
-        )
-    for i in [0, 2, 4, 6]:
-        conf.screen.blit(
-            conf.square, [i * (conf.SCREEN_SIZE / 8), 6 * (conf.SCREEN_SIZE / 8)]
-        )
-    for i in [1, 3, 5, 7]:
-        conf.screen.blit(
-            conf.square, [i * (conf.SCREEN_SIZE / 8), 7 * (conf.SCREEN_SIZE / 8)]
-        )
+    for y in range(0, 8):
+        for x in range(0, 8):
+            if y % 2 ^ x % 2:
+                conf.screen.blit(
+                    conf.square, [y * (conf.SQUARE_SIZE), x * (conf.SQUARE_SIZE)]
+                )
 
 
 def draw_pieces():

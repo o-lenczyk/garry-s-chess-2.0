@@ -23,6 +23,7 @@ SQUARE_SIZE = SCREEN_SIZE / 8
 BACKGROUND_COLOR = SETTINGS["board"]["background_color"]
 SQUARE_COLOR = SETTINGS["board"]["square_color"]
 RANDOM_COLORS = SETTINGS["board"]["random_colors"]
+FRAMERATE = SETTINGS["board"]["framerate"]
 
 if RANDOM_COLORS == True:
     BACKGROUND_COLOR = (
@@ -49,3 +50,29 @@ surf_center = (
     (SCREEN_WIDTH - square.get_width()) / 2,
     (SCREEN_HEIGHT - square.get_height()) / 2,
 )
+
+square_names = []
+
+# the list will represent the board, starting from 8 row:
+# a8 a7 a6 ...
+# a7 b7 c7 ...
+# a6 b6 c6 ...
+# .. .. .. ...
+# [0]=a1 [8]=a7 [56]=a1 [63]=h1
+
+
+def permute_square_names():
+    for number in range(8, 0, -1):
+        for letter in ("a", "b", "c", "d", "e", "f", "g", "h"):
+            square_names.append(letter + str(number))
+
+
+square_centers = []
+
+
+def compute_square_centers():
+    for x in range(0, 8):
+        for y in range(0, 8):
+            square_centers.append(
+                (y * SQUARE_SIZE + SQUARE_SIZE / 2, x * SQUARE_SIZE + SQUARE_SIZE / 2)
+            )
