@@ -2,6 +2,7 @@ import pygame
 import conf
 import board
 import piece
+import moves
 from pygame.locals import (
     K_UP,
     K_DOWN,
@@ -25,30 +26,18 @@ while running:
     # Look at every event in the queue
     for event in pygame.event.get():
         if event.type == MOUSEBUTTONDOWN:
-            x, y = pygame.mouse.get_pos()
-            conf.log.debug("clicked  x: %s, y: %s", x, y)
-            for piece in conf.all_pieces:
-                if piece.rect.collidepoint(x, y):
-                    piece.clicked = True
-                    conf.log.debug("clicked on: %s", type(piece).__name__)
+            moves.pick_piece()
         elif event.type == MOUSEBUTTONUP:
-            x, y = pygame.mouse.get_pos()
-            for piece in conf.all_pieces:
-                piece.clicked = False
-            conf.log.debug("released x: %s, y: %s", x, y)
+            moves.release_piece()
         # Did the user hit a key?
         elif event.type == KEYDOWN:
-            # Was it the Escape key? If so, stop the loop.
             if event.key == K_ESCAPE:
                 running = False
         # Did the user click the window close button? If so, stop the loop.
         elif event.type == QUIT:
             running = False
 
-    for piece in conf.all_pieces:
-        if piece.clicked == True:
-            x, y = pygame.mouse.get_pos()
-            piece.rect.center = (x, y)
+    moves.move_to_cursor()
 
     pygame.display.flip()
     conf.screen.fill(conf.BACKGROUND_COLOR)
@@ -56,5 +45,5 @@ while running:
     conf.all_pieces.draw(conf.screen)
     # all_pieces.update()
     conf.clock.tick(60)
-# Done! Time to quit.
+
 pygame.quit()
