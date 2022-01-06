@@ -1,4 +1,5 @@
 import logging
+import random
 import pygame
 from board import *
 from piece import *
@@ -28,6 +29,11 @@ SQUARE_SIZE = SCREEN_SIZE/8
 
 BACKGROUND_COLOR = (70, 140, 255)
 SQUARE_COLOR = (140, 50, 60)
+RANDOM_COLORS = False
+
+if RANDOM_COLORS == True:
+    BACKGROUND_COLOR = (random.randint(127, 200), random.randint(127, 200), random.randint(127, 200))
+    SQUARE_COLOR = (random.randint(0, 100), random.randint(0, 100), random.randint(0, 100))
 
 pygame.init()
 clock = pygame.time.Clock()
@@ -79,7 +85,7 @@ while running:
         if piece.clicked == True:
             x,y = pygame.mouse.get_pos()
             piece.rect.center=(x,y)
-            
+
     pygame.display.flip()
     screen.fill(BACKGROUND_COLOR)
     draw_board(screen, square, SQUARE_COLOR, SCREEN_SIZE)
