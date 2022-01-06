@@ -42,80 +42,82 @@ def draw_board():
 
 def draw_pieces():
 
-    conf.all_pieces.add(Pawn(0, conf.SQUARE_SIZE, "B", conf.SQUARE_SIZE))
-    conf.all_pieces.add(Pawn(conf.SQUARE_SIZE, conf.SQUARE_SIZE, "B", conf.SQUARE_SIZE))
+    conf.all_pieces.add(Pawn(0, conf.SQUARE_SIZE, "black", conf.SQUARE_SIZE))
     conf.all_pieces.add(
-        Pawn(2 * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "B", conf.SQUARE_SIZE)
+        Pawn(conf.SQUARE_SIZE, conf.SQUARE_SIZE, "black", conf.SQUARE_SIZE)
     )
     conf.all_pieces.add(
-        Pawn(3 * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "B", conf.SQUARE_SIZE)
+        Pawn(2 * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "black", conf.SQUARE_SIZE)
     )
     conf.all_pieces.add(
-        Pawn(4 * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "B", conf.SQUARE_SIZE)
+        Pawn(3 * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "black", conf.SQUARE_SIZE)
     )
     conf.all_pieces.add(
-        Pawn(5 * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "B", conf.SQUARE_SIZE)
+        Pawn(4 * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "black", conf.SQUARE_SIZE)
     )
     conf.all_pieces.add(
-        Pawn(6 * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "B", conf.SQUARE_SIZE)
+        Pawn(5 * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "black", conf.SQUARE_SIZE)
     )
     conf.all_pieces.add(
-        Pawn(7 * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "B", conf.SQUARE_SIZE)
-    )
-
-    conf.all_pieces.add(Rook(0, 0, "B", conf.SQUARE_SIZE))
-    conf.all_pieces.add(Knight(conf.SQUARE_SIZE, 0, "B", conf.SQUARE_SIZE))
-    conf.all_pieces.add(Bishop(2 * conf.SQUARE_SIZE, 0, "B", conf.SQUARE_SIZE))
-    conf.all_pieces.add(King(3 * conf.SQUARE_SIZE, 0, "B", conf.SQUARE_SIZE))
-    conf.all_pieces.add(Queen(4 * conf.SQUARE_SIZE, 0, "B", conf.SQUARE_SIZE))
-    conf.all_pieces.add(Bishop(5 * conf.SQUARE_SIZE, 0, "B", conf.SQUARE_SIZE))
-    conf.all_pieces.add(Knight(6 * conf.SQUARE_SIZE, 0, "B", conf.SQUARE_SIZE))
-    conf.all_pieces.add(Rook(7 * conf.SQUARE_SIZE, 0, "B", conf.SQUARE_SIZE))
-
-    conf.all_pieces.add(Pawn(0, 6 * conf.SQUARE_SIZE, "W", conf.SQUARE_SIZE))
-    conf.all_pieces.add(
-        Pawn(conf.SQUARE_SIZE, 6 * conf.SQUARE_SIZE, "W", conf.SQUARE_SIZE)
+        Pawn(6 * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "black", conf.SQUARE_SIZE)
     )
     conf.all_pieces.add(
-        Pawn(2 * conf.SQUARE_SIZE, 6 * conf.SQUARE_SIZE, "W", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Pawn(3 * conf.SQUARE_SIZE, 6 * conf.SQUARE_SIZE, "W", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Pawn(4 * conf.SQUARE_SIZE, 6 * conf.SQUARE_SIZE, "W", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Pawn(5 * conf.SQUARE_SIZE, 6 * conf.SQUARE_SIZE, "W", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Pawn(6 * conf.SQUARE_SIZE, 6 * conf.SQUARE_SIZE, "W", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Pawn(7 * conf.SQUARE_SIZE, 6 * conf.SQUARE_SIZE, "W", conf.SQUARE_SIZE)
+        Pawn(7 * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "black", conf.SQUARE_SIZE)
     )
 
-    conf.all_pieces.add(Rook(0, 7 * conf.SQUARE_SIZE, "W", conf.SQUARE_SIZE))
+    conf.all_pieces.add(Rook(0, 0, "black", conf.SQUARE_SIZE))
+    conf.all_pieces.add(Knight(conf.SQUARE_SIZE, 0, "black", conf.SQUARE_SIZE))
+    conf.all_pieces.add(Bishop(2 * conf.SQUARE_SIZE, 0, "black", conf.SQUARE_SIZE))
+    conf.all_pieces.add(King(3 * conf.SQUARE_SIZE, 0, "black", conf.SQUARE_SIZE))
+    conf.all_pieces.add(Queen(4 * conf.SQUARE_SIZE, 0, "black", conf.SQUARE_SIZE))
+    conf.all_pieces.add(Bishop(5 * conf.SQUARE_SIZE, 0, "black", conf.SQUARE_SIZE))
+    conf.all_pieces.add(Knight(6 * conf.SQUARE_SIZE, 0, "black", conf.SQUARE_SIZE))
+    conf.all_pieces.add(Rook(7 * conf.SQUARE_SIZE, 0, "black", conf.SQUARE_SIZE))
+
+    conf.all_pieces.add(Pawn(0, 6 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE))
     conf.all_pieces.add(
-        Knight(1 * conf.SQUARE_SIZE, 7 * conf.SQUARE_SIZE, "W", conf.SQUARE_SIZE)
+        Pawn(conf.SQUARE_SIZE, 6 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
     )
     conf.all_pieces.add(
-        Bishop(2 * conf.SQUARE_SIZE, 7 * conf.SQUARE_SIZE, "W", conf.SQUARE_SIZE)
+        Pawn(2 * conf.SQUARE_SIZE, 6 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
     )
     conf.all_pieces.add(
-        Queen(3 * conf.SQUARE_SIZE, 7 * conf.SQUARE_SIZE, "W", conf.SQUARE_SIZE)
+        Pawn(3 * conf.SQUARE_SIZE, 6 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
     )
     conf.all_pieces.add(
-        King(4 * conf.SQUARE_SIZE, 7 * conf.SQUARE_SIZE, "W", conf.SQUARE_SIZE)
+        Pawn(4 * conf.SQUARE_SIZE, 6 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
     )
     conf.all_pieces.add(
-        Bishop(5 * conf.SQUARE_SIZE, 7 * conf.SQUARE_SIZE, "W", conf.SQUARE_SIZE)
+        Pawn(5 * conf.SQUARE_SIZE, 6 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
     )
     conf.all_pieces.add(
-        Knight(6 * conf.SQUARE_SIZE, 7 * conf.SQUARE_SIZE, "W", conf.SQUARE_SIZE)
+        Pawn(6 * conf.SQUARE_SIZE, 6 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
     )
     conf.all_pieces.add(
-        Rook(7 * conf.SQUARE_SIZE, 7 * conf.SQUARE_SIZE, "W", conf.SQUARE_SIZE)
+        Pawn(7 * conf.SQUARE_SIZE, 6 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
+    )
+
+    conf.all_pieces.add(Rook(0, 7 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE))
+    conf.all_pieces.add(
+        Knight(1 * conf.SQUARE_SIZE, 7 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
+    )
+    conf.all_pieces.add(
+        Bishop(2 * conf.SQUARE_SIZE, 7 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
+    )
+    conf.all_pieces.add(
+        Queen(3 * conf.SQUARE_SIZE, 7 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
+    )
+    conf.all_pieces.add(
+        King(4 * conf.SQUARE_SIZE, 7 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
+    )
+    conf.all_pieces.add(
+        Bishop(5 * conf.SQUARE_SIZE, 7 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
+    )
+    conf.all_pieces.add(
+        Knight(6 * conf.SQUARE_SIZE, 7 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
+    )
+    conf.all_pieces.add(
+        Rook(7 * conf.SQUARE_SIZE, 7 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
     )
 
     conf.all_pieces.update()

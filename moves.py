@@ -8,7 +8,7 @@ def pick_piece():
     for piece in conf.all_pieces:
         if piece.rect.collidepoint(x, y):
             piece.clicked = True
-            conf.log.debug("clicked on: %s", type(piece).__name__)
+            conf.log.debug("clicked on: %s %s", piece.color, type(piece).__name__)
 
 
 def move_to_cursor():
@@ -35,4 +35,6 @@ def check_for_captures(x, y):
                     and piece_below.clicked == False
                 ):
                     conf.all_pieces.remove(piece_below)
-                    conf.log.debug("killed: %s", type(piece_below).__name__)
+                    conf.log.debug(
+                        "killed: %s %s", piece_below.color, type(piece_below).__name__
+                    )
