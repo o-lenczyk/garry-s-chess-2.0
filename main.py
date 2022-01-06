@@ -1,5 +1,6 @@
 import logging
 import random
+import toml
 import pygame
 from board import *
 from piece import *
@@ -22,14 +23,17 @@ logging.basicConfig(
     )
 log = logging.getLogger(__name__)
 
-SCREEN_SIZE = 512
+SETTINGS = toml.load('config.toml')
+log.debug("loaded config file: %s", SETTINGS)
+
+SCREEN_SIZE = SETTINGS['board']['screen_size']
 SCREEN_WIDTH = SCREEN_SIZE
 SCREEN_HEIGHT = SCREEN_SIZE
 SQUARE_SIZE = SCREEN_SIZE/8
 
-BACKGROUND_COLOR = (70, 140, 255)
-SQUARE_COLOR = (140, 50, 60)
-RANDOM_COLORS = False
+BACKGROUND_COLOR = SETTINGS['board']['background_color']
+SQUARE_COLOR = SETTINGS['board']['square_color']
+RANDOM_COLORS = SETTINGS['board']['random_colors']
 
 if RANDOM_COLORS == True:
     BACKGROUND_COLOR = (random.randint(127, 200), random.randint(127, 200), random.randint(127, 200))
