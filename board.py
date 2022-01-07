@@ -2,6 +2,8 @@ import pygame
 import conf
 from piece import *
 
+starting_piece_order = [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
+
 
 def draw_board():
     # Give the surface a color to separate it from the background
@@ -17,83 +19,40 @@ def draw_board():
 
 
 def draw_pieces():
+    for i in range(0, 8):
+        conf.all_pieces.add(
+            starting_piece_order[i](
+                i * conf.SQUARE_SIZE, 0, "black", conf.SQUARE_SIZE, i
+            )
+        )
 
-    conf.all_pieces.add(Pawn(0, conf.SQUARE_SIZE, "black", conf.SQUARE_SIZE))
-    conf.all_pieces.add(
-        Pawn(conf.SQUARE_SIZE, conf.SQUARE_SIZE, "black", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Pawn(2 * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "black", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Pawn(3 * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "black", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Pawn(4 * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "black", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Pawn(5 * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "black", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Pawn(6 * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "black", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Pawn(7 * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "black", conf.SQUARE_SIZE)
-    )
+    for i in range(0, 8):
+        conf.all_pieces.add(
+            Pawn(
+                i * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "black", conf.SQUARE_SIZE, i + 8
+            )
+        )
 
-    conf.all_pieces.add(Rook(0, 0, "black", conf.SQUARE_SIZE))
-    conf.all_pieces.add(Knight(conf.SQUARE_SIZE, 0, "black", conf.SQUARE_SIZE))
-    conf.all_pieces.add(Bishop(2 * conf.SQUARE_SIZE, 0, "black", conf.SQUARE_SIZE))
-    conf.all_pieces.add(King(3 * conf.SQUARE_SIZE, 0, "black", conf.SQUARE_SIZE))
-    conf.all_pieces.add(Queen(4 * conf.SQUARE_SIZE, 0, "black", conf.SQUARE_SIZE))
-    conf.all_pieces.add(Bishop(5 * conf.SQUARE_SIZE, 0, "black", conf.SQUARE_SIZE))
-    conf.all_pieces.add(Knight(6 * conf.SQUARE_SIZE, 0, "black", conf.SQUARE_SIZE))
-    conf.all_pieces.add(Rook(7 * conf.SQUARE_SIZE, 0, "black", conf.SQUARE_SIZE))
+    for i in range(0, 8):
+        conf.all_pieces.add(
+            Pawn(
+                i * conf.SQUARE_SIZE,
+                6 * conf.SQUARE_SIZE,
+                "white",
+                conf.SQUARE_SIZE,
+                i + 48,
+            )
+        )
 
-    conf.all_pieces.add(Pawn(0, 6 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE))
-    conf.all_pieces.add(
-        Pawn(conf.SQUARE_SIZE, 6 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Pawn(2 * conf.SQUARE_SIZE, 6 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Pawn(3 * conf.SQUARE_SIZE, 6 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Pawn(4 * conf.SQUARE_SIZE, 6 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Pawn(5 * conf.SQUARE_SIZE, 6 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Pawn(6 * conf.SQUARE_SIZE, 6 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Pawn(7 * conf.SQUARE_SIZE, 6 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
-    )
-
-    conf.all_pieces.add(Rook(0, 7 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE))
-    conf.all_pieces.add(
-        Knight(1 * conf.SQUARE_SIZE, 7 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Bishop(2 * conf.SQUARE_SIZE, 7 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Queen(3 * conf.SQUARE_SIZE, 7 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        King(4 * conf.SQUARE_SIZE, 7 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Bishop(5 * conf.SQUARE_SIZE, 7 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Knight(6 * conf.SQUARE_SIZE, 7 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
-    )
-    conf.all_pieces.add(
-        Rook(7 * conf.SQUARE_SIZE, 7 * conf.SQUARE_SIZE, "white", conf.SQUARE_SIZE)
-    )
+    for i in range(0, 8):
+        conf.all_pieces.add(
+            starting_piece_order[i](
+                i * conf.SQUARE_SIZE,
+                7 * conf.SQUARE_SIZE,
+                "white",
+                conf.SQUARE_SIZE,
+                i + 56,
+            )
+        )
 
     conf.all_pieces.update()

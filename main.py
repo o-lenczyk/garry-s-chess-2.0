@@ -22,7 +22,7 @@ board.draw_pieces()
 running = True
 
 conf.permute_square_names()
-conf.compute_square_centers()
+conf.compute_square_centers_list()
 
 # Main loop
 while running:

@@ -21,7 +21,7 @@ def move_focused_piece_to_cursor():
 
 def closest_square(x, y):
     mouse_position = [(x, y)]
-    diffs = np.abs(np.array(conf.square_centers) - np.array(mouse_position))
+    diffs = np.abs(np.array(conf.square_centers_list) - np.array(mouse_position))
     dists = np.sum(diffs, axis=1)
     closest_point_index = np.argmin(dists)
     return closest_point_index
@@ -32,9 +32,9 @@ def release_piece():
     closest_square_index = closest_square(x, y)
 
     conf.log.debug(
-        "closest square to release is %s", conf.square_names[closest_square_index]
+        "closest square to release is %s", conf.square_names_list[closest_square_index]
     )
-    x, y = conf.square_centers[closest_square_index]
+    x, y = conf.square_centers_list[closest_square_index]
 
     for piece in conf.all_pieces:
         if piece.clicked == True:

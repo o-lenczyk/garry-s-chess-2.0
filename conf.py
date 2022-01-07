@@ -1,4 +1,5 @@
 import pygame
+import numpy as np
 import logging
 import random
 import toml
@@ -51,7 +52,9 @@ surf_center = (
     (SCREEN_HEIGHT - square.get_height()) / 2,
 )
 
-square_names = []
+square_numbers_matrix = np.arange(64).reshape(8, 8)
+
+square_names_list = []
 
 # the list will represent the board, starting from 8 row:
 # a8 a7 a6 ...
@@ -64,15 +67,15 @@ square_names = []
 def permute_square_names():
     for number in range(8, 0, -1):
         for letter in ("a", "b", "c", "d", "e", "f", "g", "h"):
-            square_names.append(letter + str(number))
+            square_names_list.append(letter + str(number))
 
 
-square_centers = []
+square_centers_list = []
 
 
-def compute_square_centers():
+def compute_square_centers_list():
     for x in range(0, 8):
         for y in range(0, 8):
-            square_centers.append(
+            square_centers_list.append(
                 (y * SQUARE_SIZE + SQUARE_SIZE / 2, x * SQUARE_SIZE + SQUARE_SIZE / 2)
             )
