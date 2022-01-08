@@ -33,22 +33,39 @@ def closest_square(x, y):
     return closest_point_index
 
 
+def get_closest_square_center(x, y):
+    closest_square_index = closest_square(x, y)
+    closest_square_center = conf.square_centers_list[closest_square_index]
+    return closest_square_center
+
+
 def release_piece(piece):
     x, y = pygame.mouse.get_pos()
-    closest_square_index = closest_square(x, y)
+    current_square = closest_square(x, y)
 
-    conf.log.debug(
-        "closest square to release is %s", conf.square_names_list[closest_square_index]
-    )
-    x, y = conf.square_centers_list[closest_square_index]
-
+    # magnet to closest square center
+    x, y = get_closest_square_center(x, y)
     piece.rect.center = (x, y)
+
     piece_captured = check_if_captures(piece)
 
     if piece_captured:
         capture(piece_captured)
+        conf.log.info(
+            "%s x %s",
+            conf.square_names_list[piece.square],
+            conf.square_names_list[current_square],
+        )
+    else:
+        conf.log.info(
+            "%s -> %s",
+            conf.square_names_list[piece.square],
+            conf.square_names_list[current_square],
+        )
 
     piece.clicked = False
+    piece.has_moved = True
+    piece.square = current_square
 
 
 def return_to_original_square(piece):
@@ -74,4 +91,3 @@ def check_if_captures(piece_above):
 
 def capture(piece):
     conf.all_pieces.remove(piece)
-    conf.log.debug("killed: %s %s", piece.color, type(piece).__name__)
