@@ -1,6 +1,7 @@
 import pygame
 import conf
 import numpy as np
+import rules
 
 
 def pick_piece():
@@ -44,13 +45,14 @@ def release_piece(piece):
     current_square = closest_square(x, y)
 
     potential_moves = piece.get_potential_moves()
-    potential_captures = piece.get_potential_captures()
+    legal_captures = rules.get_legal_captures(piece)
 
     conf.log.debug("current square: %s", current_square)
     conf.log.debug("potential moves: %s", potential_moves)
+    conf.log.debug("legal captures: %s", legal_captures)
 
     if (current_square not in potential_moves) and (
-        current_square not in potential_captures
+        current_square not in legal_captures
     ):
         return_to_original_square(piece)
         return False
