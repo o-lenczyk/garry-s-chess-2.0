@@ -43,7 +43,11 @@ def release_piece(piece):
     x, y = conf.square_centers_list[closest_square_index]
 
     piece.rect.center = (x, y)
-    check_and_capture(piece)
+    piece_captured = check_if_captures(piece)
+
+    if piece_captured:
+        capture(piece_captured)
+
     piece.clicked = False
 
 
@@ -58,13 +62,16 @@ def return_to_original_square(piece):
     )
 
 
-def check_and_capture(piece_above):
+def check_if_captures(piece_above):
     for piece_below in conf.all_pieces:
         if (
             pygame.sprite.collide_rect(piece_above, piece_below)
             and piece_below.clicked == False
         ):
-            conf.all_pieces.remove(piece_below)
-            conf.log.debug(
-                "killed: %s %s", piece_below.color, type(piece_below).__name__
-            )
+            return piece_below
+    return False
+
+
+def capture(piece):
+    conf.all_pieces.remove(piece)
+    conf.log.debug("killed: %s %s", piece.color, type(piece).__name__)
