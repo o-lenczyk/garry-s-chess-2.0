@@ -9,7 +9,13 @@ def pick_piece():
     for piece in conf.all_pieces:
         if piece.rect.collidepoint(x, y):
             piece.clicked = True
-            conf.log.debug("clicked on: %s %s", piece.color, type(piece).__name__)
+            conf.log.debug(
+                "clicked on: %s %s, picked up from %s",
+                piece.color,
+                type(piece).__name__,
+                conf.square_names_list[piece.square],
+            )
+            return piece
 
 
 def move_focused_piece_to_cursor():
@@ -27,7 +33,7 @@ def closest_square(x, y):
     return closest_point_index
 
 
-def release_piece():
+def release_piece(piece):
     x, y = pygame.mouse.get_pos()
     closest_square_index = closest_square(x, y)
 
@@ -36,22 +42,29 @@ def release_piece():
     )
     x, y = conf.square_centers_list[closest_square_index]
 
-    for piece in conf.all_pieces:
-        if piece.clicked == True:
-            piece.rect.center = (x, y)
-            check_for_captures(x, y)
-            piece.clicked = False
+    piece.rect.center = (x, y)
+    check_and_capture(piece)
+    piece.clicked = False
 
 
-def check_for_captures(x, y):
-    for piece_above in conf.all_pieces:
-        if piece_above.clicked == True:
-            for piece_below in conf.all_pieces:
-                if (
-                    pygame.sprite.collide_rect(piece_above, piece_below)
-                    and piece_below.clicked == False
-                ):
-                    conf.all_pieces.remove(piece_below)
-                    conf.log.debug(
-                        "killed: %s %s", piece_below.color, type(piece_below).__name__
-                    )
+def return_to_original_square(piece):
+    piece.clicked = False
+    piece.rect.center = conf.square_centers_list[piece.square]
+    conf.log.debug(
+        "%s %s returned to original position: %s",
+        piece.color,
+        type(piece).__name__,
+        conf.square_names_list[piece.square],
+    )
+
+
+def check_and_capture(piece_above):
+    for piece_below in conf.all_pieces:
+        if (
+            pygame.sprite.collide_rect(piece_above, piece_below)
+            and piece_below.clicked == False
+        ):
+            conf.all_pieces.remove(piece_below)
+            conf.log.debug(
+                "killed: %s %s", piece_below.color, type(piece_below).__name__
+            )

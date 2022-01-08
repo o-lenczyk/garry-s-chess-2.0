@@ -29,9 +29,10 @@ while running:
     # Look at every event in the queue
     for event in pygame.event.get():
         if event.type == MOUSEBUTTONDOWN:
-            moves.pick_piece()
-        elif event.type == MOUSEBUTTONUP:
-            moves.release_piece()
+            picked = moves.pick_piece()
+        # TODO: change to isinstance(piece, Piece)
+        elif event.type == MOUSEBUTTONUP and picked:
+            moves.release_piece(picked)
         # Did the user hit a key?
         elif event.type == KEYDOWN:
             if event.key == K_ESCAPE:
