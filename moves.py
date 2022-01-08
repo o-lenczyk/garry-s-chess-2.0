@@ -43,6 +43,18 @@ def release_piece(piece):
     x, y = pygame.mouse.get_pos()
     current_square = closest_square(x, y)
 
+    potential_moves = piece.get_potential_moves()
+    potential_captures = piece.get_potential_captures()
+
+    conf.log.debug("current square: %s", current_square)
+    conf.log.debug("potential moves: %s", potential_moves)
+
+    if (current_square not in potential_moves) and (
+        current_square not in potential_captures
+    ):
+        return_to_original_square(piece)
+        return False
+
     # magnet to closest square center
     x, y = get_closest_square_center(x, y)
     piece.rect.center = (x, y)

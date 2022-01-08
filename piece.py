@@ -17,8 +17,19 @@ class Pawn(pygame.sprite.Sprite):
         self.has_moved = False
         self.square = square
 
-        def legal_moves():
-            return True
+    def get_potential_moves(self):
+        list_of_potential_moves = []
+        list_of_potential_moves.append(self.square + 8)  # move one square forward
+
+        if self.has_moved == False:
+            list_of_potential_moves.append(self.square + 16)  # move two squares forward
+        return list_of_potential_moves
+
+    def get_potential_captures(self):
+        list_of_potential_captures = []
+        list_of_potential_captures.append(self.square + 7)
+        list_of_potential_captures.append(self.square + 9)
+        return list_of_potential_captures
 
 
 class King(pygame.sprite.Sprite):
