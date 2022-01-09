@@ -78,6 +78,7 @@ def release_piece(piece):
     piece.clicked = False
     piece.has_moved = True
     piece.square = current_square
+    piece.update_row_and_column()
 
 
 def return_to_original_square(piece):

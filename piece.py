@@ -1,5 +1,6 @@
 import pygame
 import conf
+import numpy as np
 
 
 class Pawn(pygame.sprite.Sprite):
@@ -16,20 +17,62 @@ class Pawn(pygame.sprite.Sprite):
         self.clicked = False
         self.has_moved = False
         self.square = square
+        self.row, self.column = 0, 0
+        self.update_row_and_column()
 
     def get_potential_moves(self):
-        list_of_potential_moves = []
-        list_of_potential_moves.append(self.square + 8)  # move one square forward
 
-        if self.has_moved == False:
-            list_of_potential_moves.append(self.square + 16)  # move two squares forward
+        list_of_potential_moves = []
+
+        row = self.row + 1  # move one square forward
+        column = self.column
+
+        if self.in_board_range(row, column):
+            move_to_append = self.fetch_square_number(row, column)
+            list_of_potential_moves.append(move_to_append)
+
+        row = self.row + 2  # move two squares forward
+        column = self.column  # TODO: check if row+1 is empty (implement rook first)
+
+        if self.has_moved == False and self.in_board_range(row, column):
+            move_to_append = self.fetch_square_number(row, column)
+            list_of_potential_moves.append(move_to_append)
+
         return list_of_potential_moves
 
     def get_potential_captures(self):
         list_of_potential_captures = []
-        list_of_potential_captures.append(self.square + 7)
-        list_of_potential_captures.append(self.square + 9)
+
+        row = self.row + 1  # capture left (for black)
+        column = self.column - 1
+
+        if self.in_board_range(row, column):
+            move_to_append = self.fetch_square_number(row, column)
+            list_of_potential_captures.append(move_to_append)
+
+        row = self.row + 1  # capture right (for black)
+        column = self.column + 1
+
+        if self.in_board_range(row, column):
+            move_to_append = self.fetch_square_number(row, column)
+            list_of_potential_captures.append(move_to_append)
+
         return list_of_potential_captures
+
+    def in_board_range(self, row, column):
+        if (row in range(0, 8)) and (column in range(0, 8)):
+            return True
+        else:
+            return False
+
+    def fetch_square_number(self, row, column):
+        square_number = conf.square_numbers_matrix[row][column]
+        return square_number
+
+    def update_row_and_column(self):
+        where = np.where(conf.square_numbers_matrix == self.square)
+        self.row = where[0][0]
+        self.column = where[1][0]
 
 
 class King(pygame.sprite.Sprite):
