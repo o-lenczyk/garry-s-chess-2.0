@@ -28,14 +28,14 @@ def draw_pieces():
 
     for i in range(0, 8):
         conf.all_pieces.add(
-            Pawn(
+            BlackPawn(
                 i * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "Black", conf.SQUARE_SIZE, i + 8
             )
         )
 
     for i in range(0, 8):
         conf.all_pieces.add(
-            Pawn(
+            WhitePawn(
                 i * conf.SQUARE_SIZE,
                 6 * conf.SQUARE_SIZE,
                 "White",

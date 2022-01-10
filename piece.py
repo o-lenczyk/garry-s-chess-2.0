@@ -4,13 +4,16 @@ import numpy as np
 
 
 class Piece(pygame.sprite.Sprite):
-    def __init__(self, x, y, color, size, square):
+    def __init__(self, x, y, color, square_size, square):
         pygame.sprite.Sprite.__init__(self)
-        filename = f"images/{color}{type(self).__name__}.png"
+        # class name of Pawn will have color, so this code will avoid BlackBlackPawn.png
+        self.type = type(self).__name__.replace("Black", "").replace("White", "")
+        filename = f"images/{color}{self.type}.png"
 
         self.image = pygame.image.load(filename)
         self.color = color
-        self.image = pygame.transform.scale(self.image, (size, size))
+        # resize the image to size of square
+        self.image = pygame.transform.scale(self.image, (square_size, square_size))
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
         self.clicked = False
@@ -35,7 +38,7 @@ class Piece(pygame.sprite.Sprite):
         self.column = where[1][0]
 
 
-class Pawn(Piece):
+class BlackPawn(Piece):
     def get_potential_moves(self):
 
         list_of_potential_moves = []
@@ -74,6 +77,10 @@ class Pawn(Piece):
             list_of_potential_captures.append(move_to_append)
 
         return list_of_potential_captures
+
+
+class WhitePawn(Piece):
+    pass
 
 
 class King(Piece):
