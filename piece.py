@@ -3,13 +3,12 @@ import conf
 import numpy as np
 
 
-class Pawn(pygame.sprite.Sprite):
+class Piece(pygame.sprite.Sprite):
     def __init__(self, x, y, color, size, square):
         pygame.sprite.Sprite.__init__(self)
-        if color == "black":
-            self.image = pygame.image.load("images/BP.png")
-        else:
-            self.image = pygame.image.load("images/WP.png")
+        filename = f"images/{color}{type(self).__name__}.png"
+
+        self.image = pygame.image.load(filename)
         self.color = color
         self.image = pygame.transform.scale(self.image, (size, size))
         self.rect = self.image.get_rect()
@@ -20,6 +19,23 @@ class Pawn(pygame.sprite.Sprite):
         self.row, self.column = 0, 0
         self.update_row_and_column()
 
+    def in_board_range(self, row, column):
+        if (row in range(0, 8)) and (column in range(0, 8)):
+            return True
+        else:
+            return False
+
+    def fetch_square_number(self, row, column):
+        square_number = conf.square_numbers_matrix[row][column]
+        return square_number
+
+    def update_row_and_column(self):
+        where = np.where(conf.square_numbers_matrix == self.square)
+        self.row = where[0][0]
+        self.column = where[1][0]
+
+
+class Pawn(Piece):
     def get_potential_moves(self):
 
         list_of_potential_moves = []
@@ -59,92 +75,22 @@ class Pawn(pygame.sprite.Sprite):
 
         return list_of_potential_captures
 
-    def in_board_range(self, row, column):
-        if (row in range(0, 8)) and (column in range(0, 8)):
-            return True
-        else:
-            return False
 
-    def fetch_square_number(self, row, column):
-        square_number = conf.square_numbers_matrix[row][column]
-        return square_number
-
-    def update_row_and_column(self):
-        where = np.where(conf.square_numbers_matrix == self.square)
-        self.row = where[0][0]
-        self.column = where[1][0]
+class King(Piece):
+    pass
 
 
-class King(pygame.sprite.Sprite):
-    def __init__(self, x, y, color, size, square):
-        pygame.sprite.Sprite.__init__(self)
-        if color == "black":
-            self.image = pygame.image.load("images/BK.png")
-        else:
-            self.image = pygame.image.load("images/WK.png")
-        self.color = color
-        self.image = pygame.transform.scale(self.image, (size, size))
-        self.rect = self.image.get_rect()
-        self.rect.topleft = (x, y)
-        self.clicked = False
-        self.square = square
+class Queen(Piece):
+    pass
 
 
-class Queen(pygame.sprite.Sprite):
-    def __init__(self, x, y, color, size, square):
-        pygame.sprite.Sprite.__init__(self)
-        if color == "black":
-            self.image = pygame.image.load("images/BQ.png")
-        else:
-            self.image = pygame.image.load("images/WQ.png")
-        self.color = color
-        self.image = pygame.transform.scale(self.image, (size, size))
-        self.rect = self.image.get_rect()
-        self.rect.topleft = (x, y)
-        self.clicked = False
-        self.square = square
+class Rook(Piece):
+    pass
 
 
-class Rook(pygame.sprite.Sprite):
-    def __init__(self, x, y, color, size, square):
-        pygame.sprite.Sprite.__init__(self)
-        if color == "black":
-            self.image = pygame.image.load("images/BR.png")
-        else:
-            self.image = pygame.image.load("images/WR.png")
-        self.color = color
-        self.image = pygame.transform.scale(self.image, (size, size))
-        self.rect = self.image.get_rect()
-        self.rect.topleft = (x, y)
-        self.clicked = False
-        self.square = square
+class Knight(Piece):
+    pass
 
 
-class Knight(pygame.sprite.Sprite):
-    def __init__(self, x, y, color, size, square):
-        pygame.sprite.Sprite.__init__(self)
-        if color == "black":
-            self.image = pygame.image.load("images/BN.png")
-        else:
-            self.image = pygame.image.load("images/WN.png")
-        self.color = color
-        self.image = pygame.transform.scale(self.image, (size, size))
-        self.rect = self.image.get_rect()
-        self.rect.topleft = (x, y)
-        self.clicked = False
-        self.square = square
-
-
-class Bishop(pygame.sprite.Sprite):
-    def __init__(self, x, y, color, size, square):
-        pygame.sprite.Sprite.__init__(self)
-        if color == "black":
-            self.image = pygame.image.load("images/BB.png")
-        else:
-            self.image = pygame.image.load("images/WB.png")
-        self.color = color
-        self.image = pygame.transform.scale(self.image, (size, size))
-        self.rect = self.image.get_rect()
-        self.rect.topleft = (x, y)
-        self.clicked = False
-        self.square = square
+class Bishop(Piece):
+    pass

@@ -22,14 +22,14 @@ def draw_pieces():
     for i in range(0, 8):
         conf.all_pieces.add(
             starting_piece_order[i](
-                i * conf.SQUARE_SIZE, 0, "black", conf.SQUARE_SIZE, i
+                i * conf.SQUARE_SIZE, 0, "Black", conf.SQUARE_SIZE, i
             )
         )
 
     for i in range(0, 8):
         conf.all_pieces.add(
             Pawn(
-                i * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "black", conf.SQUARE_SIZE, i + 8
+                i * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "Black", conf.SQUARE_SIZE, i + 8
             )
         )
 
@@ -38,7 +38,7 @@ def draw_pieces():
             Pawn(
                 i * conf.SQUARE_SIZE,
                 6 * conf.SQUARE_SIZE,
-                "white",
+                "White",
                 conf.SQUARE_SIZE,
                 i + 48,
             )
@@ -49,7 +49,7 @@ def draw_pieces():
             starting_piece_order[i](
                 i * conf.SQUARE_SIZE,
                 7 * conf.SQUARE_SIZE,
-                "white",
+                "White",
                 conf.SQUARE_SIZE,
                 i + 56,
             )
