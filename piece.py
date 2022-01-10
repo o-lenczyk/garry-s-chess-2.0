@@ -80,7 +80,44 @@ class BlackPawn(Piece):
 
 
 class WhitePawn(Piece):
-    pass
+    def get_potential_moves(self):
+
+        list_of_potential_moves = []
+
+        row = self.row - 1  # move one square forward
+        column = self.column
+
+        if self.in_board_range(row, column):
+            move_to_append = self.fetch_square_number(row, column)
+            list_of_potential_moves.append(move_to_append)
+
+        row = self.row - 2  # move two squares forward
+        column = self.column  # TODO: check if row+1 is empty (implement rook first)
+
+        if self.has_moved == False and self.in_board_range(row, column):
+            move_to_append = self.fetch_square_number(row, column)
+            list_of_potential_moves.append(move_to_append)
+
+        return list_of_potential_moves
+
+    def get_potential_captures(self):
+        list_of_potential_captures = []
+
+        row = self.row - 1  # capture left (for black)
+        column = self.column - 1
+
+        if self.in_board_range(row, column):
+            move_to_append = self.fetch_square_number(row, column)
+            list_of_potential_captures.append(move_to_append)
+
+        row = self.row - 1  # capture right (for black)
+        column = self.column + 1
+
+        if self.in_board_range(row, column):
+            move_to_append = self.fetch_square_number(row, column)
+            list_of_potential_captures.append(move_to_append)
+
+        return list_of_potential_captures
 
 
 class King(Piece):

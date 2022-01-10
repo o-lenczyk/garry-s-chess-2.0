@@ -12,9 +12,12 @@ def get_legal_captures(piece):
     return legal_captures
 
 
-def is_occupied_by_enemy(piece, square):
-    for piece in conf.all_pieces:
-        if piece.square == square and piece.color is not piece.color:
+def is_occupied_by_enemy(focused_piece, square):
+    for potential_enemy in conf.all_pieces:
+        if (
+            potential_enemy.square == square
+            and focused_piece.color is not potential_enemy.color
+        ):
             return True
     return False
 
