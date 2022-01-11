@@ -1,6 +1,7 @@
 import pygame
-import conf
 import numpy as np
+import conf
+import rules
 
 
 class Piece(pygame.sprite.Sprite):
@@ -37,104 +38,92 @@ class Piece(pygame.sprite.Sprite):
         self.row = where[0][0]
         self.column = where[1][0]
 
+    def get_potential_moves(self):
+        potential_moves = []
+
+        for direction in self.move_directions:
+
+            temp_row = self.row
+            temp_column = self.column
+            move_range = self.move_range
+
+            while (
+                temp_row + direction[0] in range(0, 8)
+                and temp_column + direction[1] in range(0, 8)
+                and move_range > 0
+            ):
+                potential_move = self.fetch_square_number(
+                    temp_row + direction[0], temp_column + direction[1]
+                )
+
+                potential_moves.append(potential_move)
+
+                if rules.is_occupied(potential_move):
+                    break
+
+                temp_row += direction[0]
+                temp_column += direction[1]
+                move_range -= 1
+        return potential_moves
+
 
 class BlackPawn(Piece):
-    def get_potential_moves(self):
-
-        list_of_potential_moves = []
-
-        row = self.row + 1  # move one square forward
-        column = self.column
-
-        if self.in_board_range(row, column):
-            move_to_append = self.fetch_square_number(row, column)
-            list_of_potential_moves.append(move_to_append)
-
-        row = self.row + 2  # move two squares forward
-        column = self.column  # TODO: check if row+1 is empty (implement rook first)
-
-        if self.has_moved == False and self.in_board_range(row, column):
-            move_to_append = self.fetch_square_number(row, column)
-            list_of_potential_moves.append(move_to_append)
-
-        return list_of_potential_moves
-
-    def get_potential_captures(self):
-        list_of_potential_captures = []
-
-        row = self.row + 1  # capture left (for black)
-        column = self.column - 1
-
-        if self.in_board_range(row, column):
-            move_to_append = self.fetch_square_number(row, column)
-            list_of_potential_captures.append(move_to_append)
-
-        row = self.row + 1  # capture right (for black)
-        column = self.column + 1
-
-        if self.in_board_range(row, column):
-            move_to_append = self.fetch_square_number(row, column)
-            list_of_potential_captures.append(move_to_append)
-
-        return list_of_potential_captures
+    move_directions = {(1, 0)}
+    move_range = 1
 
 
 class WhitePawn(Piece):
-    def get_potential_moves(self):
-
-        list_of_potential_moves = []
-
-        row = self.row - 1  # move one square forward
-        column = self.column
-
-        if self.in_board_range(row, column):
-            move_to_append = self.fetch_square_number(row, column)
-            list_of_potential_moves.append(move_to_append)
-
-        row = self.row - 2  # move two squares forward
-        column = self.column  # TODO: check if row+1 is empty (implement rook first)
-
-        if self.has_moved == False and self.in_board_range(row, column):
-            move_to_append = self.fetch_square_number(row, column)
-            list_of_potential_moves.append(move_to_append)
-
-        return list_of_potential_moves
-
-    def get_potential_captures(self):
-        list_of_potential_captures = []
-
-        row = self.row - 1  # capture left (for black)
-        column = self.column - 1
-
-        if self.in_board_range(row, column):
-            move_to_append = self.fetch_square_number(row, column)
-            list_of_potential_captures.append(move_to_append)
-
-        row = self.row - 1  # capture right (for black)
-        column = self.column + 1
-
-        if self.in_board_range(row, column):
-            move_to_append = self.fetch_square_number(row, column)
-            list_of_potential_captures.append(move_to_append)
-
-        return list_of_potential_captures
+    move_directions = {(-1, 0)}
+    move_range = 1
 
 
 class King(Piece):
-    pass
+    move_directions = {
+        (-1, -1),
+        (-1, 0),
+        (-1, 1),
+        (0, -1),
+        (0, 1),
+        (1, -1),
+        (1, 0),
+        (1, 1),
+    }
+    move_range = 1
 
 
 class Queen(Piece):
-    pass
+    move_directions = {
+        (-1, -1),
+        (-1, 0),
+        (-1, 1),
+        (0, -1),
+        (0, 1),
+        (1, -1),
+        (1, 0),
+        (1, 1),
+    }
+    move_range = 666
 
 
 class Rook(Piece):
-    pass
+    move_directions = {(-1, 0), (0, -1), (0, 1), (1, 0)}
+    move_range = 8
 
 
 class Knight(Piece):
-    pass
+    move_directions = {
+        (-2, -1),
+        (-2, 1),
+        (-1, -2),
+        (-1, 2),
+        (1, -2),
+        (1, 2),
+        (2, -1),
+        (2, 1),
+    }
+    move_range = 1
 
 
 class Bishop(Piece):
-    pass
+    move_directions = {(-1, -1), (-1, 1), (1, -1), (1, 1)}
+    move_range = 8

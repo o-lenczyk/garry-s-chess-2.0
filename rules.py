@@ -2,7 +2,7 @@ import conf
 
 
 def get_legal_captures(piece):
-    potential_captures = piece.get_potential_captures()
+    potential_captures = piece.get_potential_moves()
     legal_captures = []
 
     for potential_capture in potential_captures:
@@ -27,14 +27,14 @@ def get_legal_moves(piece):
     legal_moves = []
 
     for potential_move in potential_moves:
-        if is_not_occupied(potential_move):
+        if not is_occupied(potential_move):
             legal_moves.append(potential_move)
 
     return legal_moves
 
 
-def is_not_occupied(square):
+def is_occupied(square):
     for piece in conf.all_pieces:
         if piece.square == square:
-            return False
-    return True
+            return True
+    return False
