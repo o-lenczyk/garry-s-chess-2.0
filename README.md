@@ -8,7 +8,6 @@
 ## what is not working
 - almost everything else, including:
   - en passant
-  - double pawn move
   - castling
   - promition
   - pin to king

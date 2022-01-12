@@ -11,9 +11,9 @@ def pick_piece():
         if piece.rect.collidepoint(x, y):
             piece.clicked = True
             conf.log.debug(
-                "clicked on: %s %s, picked up from %s",
+                "clicked on: %s %s, from %s",
                 piece.color,
-                type(piece).__name__,
+                piece.icon,
                 conf.square_names_list[piece.square],
             )
             return piece
@@ -85,9 +85,9 @@ def return_to_original_square(piece):
     piece.clicked = False
     piece.rect.center = conf.square_centers_list[piece.square]
     conf.log.debug(
-        "%s %s returned to original position: %s",
+        "%s %s returned to: %s",
         piece.color,
-        type(piece).__name__,
+        piece.icon,
         conf.square_names_list[piece.square],
     )
 

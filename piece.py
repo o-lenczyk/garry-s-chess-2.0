@@ -60,6 +60,12 @@ class Piece(pygame.sprite.Sprite):
 
                 if rules.is_occupied(potential_move):
                     break
+                elif isinstance(self, Pawn) and self.has_moved == False:
+                    potential_move = self.fetch_square_number(
+                        temp_row + 2 * direction[0], temp_column
+                    )
+
+                potential_moves.append(potential_move)
 
                 temp_row += direction[0]
                 temp_column += direction[1]
@@ -67,14 +73,22 @@ class Piece(pygame.sprite.Sprite):
         return potential_moves
 
 
-class BlackPawn(Piece):
+class Pawn(Piece):
+    pass
+
+
+class BlackPawn(Pawn):
     move_directions = {(1, 0)}
+    capture_directions = {(1, 1), (1, -1)}
     move_range = 1
+    icon = "♟"
 
 
-class WhitePawn(Piece):
+class WhitePawn(Pawn):
     move_directions = {(-1, 0)}
+    capture_directions = {(-1, -1), (-1, 1)}
     move_range = 1
+    icon = "♙"
 
 
 class King(Piece):
@@ -89,6 +103,7 @@ class King(Piece):
         (1, 1),
     }
     move_range = 1
+    icon = "♔"
 
 
 class Queen(Piece):
@@ -103,11 +118,13 @@ class Queen(Piece):
         (1, 1),
     }
     move_range = 666
+    icon = "♕"
 
 
 class Rook(Piece):
     move_directions = {(-1, 0), (0, -1), (0, 1), (1, 0)}
     move_range = 8
+    icon = "♖"
 
 
 class Knight(Piece):
@@ -122,8 +139,10 @@ class Knight(Piece):
         (2, 1),
     }
     move_range = 1
+    icon = "♘"
 
 
 class Bishop(Piece):
     move_directions = {(-1, -1), (-1, 1), (1, -1), (1, 1)}
     move_range = 8
+    icon = "♗"
