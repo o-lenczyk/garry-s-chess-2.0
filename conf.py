@@ -5,6 +5,7 @@ import random
 import toml
 
 all_pieces = pygame.sprite.Group()
+move_indicators = pygame.sprite.Group()
 
 logging.basicConfig(
     level=logging.DEBUG,

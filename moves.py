@@ -2,6 +2,7 @@ import pygame
 import conf
 import numpy as np
 import rules
+import board
 
 
 def pick_piece():
@@ -10,6 +11,16 @@ def pick_piece():
     for piece in conf.all_pieces:
         if piece.rect.collidepoint(x, y):
             piece.clicked = True
+
+            piece.legal_moves = rules.get_legal_moves(piece)
+            piece.legal_captures = rules.get_legal_captures(piece)
+
+            conf.log.debug("legal moves: %s", piece.legal_moves)
+            conf.log.debug("legal captures: %s", piece.legal_captures)
+
+            board.draw_legal_moves(piece.legal_moves)
+            board.draw_legal_captures(piece.legal_captures)
+
             conf.log.debug(
                 "clicked on: %s %s, from %s",
                 piece.color,
@@ -44,15 +55,13 @@ def release_piece(piece):
     x, y = pygame.mouse.get_pos()
     current_square = closest_square(x, y)
 
-    legal_captures = rules.get_legal_captures(piece)
-    legal_moves = rules.get_legal_moves(piece)
-
     conf.log.debug("current square: %s", current_square)
-    conf.log.debug("potential moves: %s", legal_moves)
-    conf.log.debug("legal captures: %s", legal_captures)
 
-    if (current_square not in legal_moves) and (current_square not in legal_captures):
+    if (current_square not in piece.legal_moves) and (
+        current_square not in piece.legal_captures
+    ):
         return_to_original_square(piece)
+        board.erase_legal_moves()
         return False
 
     # magnet to closest square center
@@ -79,6 +88,9 @@ def release_piece(piece):
     piece.has_moved = True
     piece.square = current_square
     piece.update_row_and_column()
+
+    board.erase_legal_moves()
+    return True
 
 
 def return_to_original_square(piece):

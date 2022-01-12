@@ -22,6 +22,8 @@ class Piece(pygame.sprite.Sprite):
         self.square = square
         self.row, self.column = 0, 0
         self.update_row_and_column()
+        self.legal_moves = []
+        self.legal_captures = []
 
     def in_board_range(self, row, column):
         if (row in range(0, 8)) and (column in range(0, 8)):

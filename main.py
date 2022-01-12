@@ -47,7 +47,8 @@ while running:
     conf.screen.fill(conf.BACKGROUND_COLOR)
     board.draw_board()
     conf.all_pieces.draw(conf.screen)
-    # all_pieces.update()
+    conf.move_indicators.draw(conf.screen)
+
     conf.clock.tick(conf.FRAMERATE)
 
 pygame.quit()

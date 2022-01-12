@@ -1,6 +1,7 @@
 import pygame
 import conf
 from piece import *
+from helpers import *
 
 starting_piece_order = [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
 
@@ -56,3 +57,22 @@ def draw_pieces():
         )
 
     conf.all_pieces.update()
+
+
+def draw_legal_moves(legal_moves):
+    for legal_move in legal_moves:
+        conf.move_indicators.add(PossibleMoves(legal_move))
+
+    conf.move_indicators.update()
+
+
+def erase_legal_moves():
+    conf.move_indicators.empty()
+    conf.move_indicators.update()
+
+
+def draw_legal_captures(legal_captures):
+    for legal_capture in legal_captures:
+        conf.move_indicators.add(PossibleCaptures(legal_capture))
+
+    conf.move_indicators.update()

@@ -1,9 +1,10 @@
 # garry's chess 2.0
 ## goal
-- reinvent chess
+The goal is to reinvent chess. Possible evolution to [fairy chess](https://en.wikipedia.org/wiki/Fairy_chess) or dungeon crawler.
 
 ## what is working
 - basic piece moves
+- possible moves indicators
 
 ## what is not working
 - almost everything else, including:
