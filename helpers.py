@@ -4,6 +4,8 @@ import conf
 
 
 class PossibleMoves(pygame.sprite.Sprite):
+    """pyhame sprite to indicate possible moves on board"""
+
     def __init__(self, square):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface((10, 10))
@@ -13,6 +15,8 @@ class PossibleMoves(pygame.sprite.Sprite):
 
 
 class PossibleCaptures(pygame.sprite.Sprite):
+    """pyhame sprite to indicate possible captures on board"""
+
     def __init__(self, square):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface((10, 10))

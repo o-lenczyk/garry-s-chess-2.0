@@ -6,6 +6,8 @@ import rules
 
 
 class Piece(pygame.sprite.Sprite):
+    """abstract of a piece. will contain all the variables but possible moves"""
+
     def __init__(self, x, y, color, square_size, square):
         pygame.sprite.Sprite.__init__(self)
         # class name of Pawn will have color, so this code will avoid BlackBlackPawn.png
@@ -77,10 +79,14 @@ class Piece(pygame.sprite.Sprite):
 
 
 class Pawn(Piece):
+    """abstract of a pawn. black moves down, white moves up"""
+
     pass
 
 
 class BlackPawn(Pawn):
+    """♟"""
+
     move_directions = {(1, 0)}
     capture_directions = {(1, 1), (1, -1)}
     move_range = 1
@@ -88,6 +94,8 @@ class BlackPawn(Pawn):
 
 
 class WhitePawn(Pawn):
+    """♙"""
+
     move_directions = {(-1, 0)}
     capture_directions = {(-1, -1), (-1, 1)}
     move_range = 1
@@ -95,6 +103,8 @@ class WhitePawn(Pawn):
 
 
 class King(Piece):
+    """♔ or ♚"""
+
     move_directions = {
         (-1, -1),
         (-1, 0),
@@ -110,6 +120,8 @@ class King(Piece):
 
 
 class Queen(Piece):
+    """♕ or ♛"""
+
     move_directions = {
         (-1, -1),
         (-1, 0),
@@ -125,12 +137,16 @@ class Queen(Piece):
 
 
 class Rook(Piece):
+    """♖ or ♜"""
+
     move_directions = {(-1, 0), (0, -1), (0, 1), (1, 0)}
     move_range = 8
     icon = "♖"
 
 
 class Knight(Piece):
+    """♘ or ♞"""
+
     move_directions = {
         (-2, -1),
         (-2, 1),
@@ -146,6 +162,8 @@ class Knight(Piece):
 
 
 class Bishop(Piece):
+    """♗ or ♝"""
+
     move_directions = {(-1, -1), (-1, 1), (1, -1), (1, 1)}
     move_range = 8
     icon = "♗"

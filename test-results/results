@@ -21,10 +21,8 @@ conf.py:80:12: C0103: Variable name "y" doesn't conform to snake_case naming sty
 conf.py:4:0: C0411: standard import "import logging" should be placed before "import pygame" (wrong-import-order)
 conf.py:5:0: C0411: standard import "import random" should be placed before "import pygame" (wrong-import-order)
 ************* Module helpers
-helpers.py:6:0: C0115: Missing class docstring (missing-class-docstring)
 helpers.py:6:0: R0903: Too few public methods (0/2) (too-few-public-methods)
-helpers.py:15:0: C0115: Missing class docstring (missing-class-docstring)
-helpers.py:15:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+helpers.py:17:0: R0903: Too few public methods (0/2) (too-few-public-methods)
 ************* Module main
 main.py:34:9: W0511: TODO: change to isinstance(piece, Piece) (fixme)
 main.py:7:0: E0611: No name 'K_UP' in module 'pygame.locals' (no-name-in-module)
@@ -72,29 +70,21 @@ moves.py:112:16: C0121: Comparison 'piece_below.clicked == False' should be 'pie
 moves.py:118:0: C0116: Missing function or method docstring (missing-function-docstring)
 moves.py:4:0: C0411: third party import "import numpy as np" should be placed before "import conf" (wrong-import-order)
 ************* Module piece
-piece.py:8:0: C0115: Missing class docstring (missing-class-docstring)
 piece.py:8:0: R0902: Too many instance attributes (11/7) (too-many-instance-attributes)
-piece.py:9:23: C0103: Argument name "x" doesn't conform to snake_case naming style (invalid-name)
-piece.py:9:26: C0103: Argument name "y" doesn't conform to snake_case naming style (invalid-name)
-piece.py:9:4: R0913: Too many arguments (6/5) (too-many-arguments)
-piece.py:29:4: C0116: Missing function or method docstring (missing-function-docstring)
-piece.py:30:8: R1703: The if statement can be replaced with 'return bool(test)' (simplifiable-if-statement)
-piece.py:30:8: R1705: Unnecessary "else" after "return" (no-else-return)
-piece.py:29:4: R0201: Method could be a function (no-self-use)
-piece.py:35:4: C0116: Missing function or method docstring (missing-function-docstring)
-piece.py:35:4: R0201: Method could be a function (no-self-use)
-piece.py:39:4: C0116: Missing function or method docstring (missing-function-docstring)
-piece.py:44:4: C0116: Missing function or method docstring (missing-function-docstring)
-piece.py:64:16: R1723: Unnecessary "elif" after "break" (no-else-break)
-piece.py:66:48: C0121: Comparison 'self.has_moved == False' should be 'self.has_moved is False' if checking for the singleton value False, or 'not self.has_moved' if testing for falsiness (singleton-comparison)
-piece.py:79:0: C0115: Missing class docstring (missing-class-docstring)
-piece.py:83:0: C0115: Missing class docstring (missing-class-docstring)
-piece.py:90:0: C0115: Missing class docstring (missing-class-docstring)
-piece.py:97:0: C0115: Missing class docstring (missing-class-docstring)
-piece.py:112:0: C0115: Missing class docstring (missing-class-docstring)
-piece.py:127:0: C0115: Missing class docstring (missing-class-docstring)
-piece.py:133:0: C0115: Missing class docstring (missing-class-docstring)
-piece.py:148:0: C0115: Missing class docstring (missing-class-docstring)
+piece.py:11:23: C0103: Argument name "x" doesn't conform to snake_case naming style (invalid-name)
+piece.py:11:26: C0103: Argument name "y" doesn't conform to snake_case naming style (invalid-name)
+piece.py:11:4: R0913: Too many arguments (6/5) (too-many-arguments)
+piece.py:31:4: C0116: Missing function or method docstring (missing-function-docstring)
+piece.py:32:8: R1703: The if statement can be replaced with 'return bool(test)' (simplifiable-if-statement)
+piece.py:32:8: R1705: Unnecessary "else" after "return" (no-else-return)
+piece.py:31:4: R0201: Method could be a function (no-self-use)
+piece.py:37:4: C0116: Missing function or method docstring (missing-function-docstring)
+piece.py:37:4: R0201: Method could be a function (no-self-use)
+piece.py:41:4: C0116: Missing function or method docstring (missing-function-docstring)
+piece.py:46:4: C0116: Missing function or method docstring (missing-function-docstring)
+piece.py:66:16: R1723: Unnecessary "elif" after "break" (no-else-break)
+piece.py:68:48: C0121: Comparison 'self.has_moved == False' should be 'self.has_moved is False' if checking for the singleton value False, or 'not self.has_moved' if testing for falsiness (singleton-comparison)
+piece.py:84:4: W0107: Unnecessary pass statement (unnecessary-pass)
 ************* Module rules
 rules.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 rules.py:4:0: C0116: Missing function or method docstring (missing-function-docstring)
@@ -103,5 +93,5 @@ rules.py:25:0: C0116: Missing function or method docstring (missing-function-doc
 rules.py:36:0: C0116: Missing function or method docstring (missing-function-docstring)
 
 -----------------------------------
-Your code has been rated at 5.16/10
+Your code has been rated at 5.50/10
 
