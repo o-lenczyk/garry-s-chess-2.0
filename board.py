@@ -1,3 +1,4 @@
+"""functions to set up and display the board"""
 import pygame
 import conf
 from piece import *

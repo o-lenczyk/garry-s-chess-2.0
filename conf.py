@@ -1,3 +1,4 @@
+"""global configuration variables"""
 import pygame
 import numpy as np
 import logging

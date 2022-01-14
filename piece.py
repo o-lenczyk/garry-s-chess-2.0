@@ -1,3 +1,4 @@
+"""this module contains Piece class and all the subclasses"""
 import pygame
 import numpy as np
 import conf

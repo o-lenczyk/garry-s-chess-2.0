@@ -1,3 +1,4 @@
+"""main loop"""
 import pygame
 import conf
 import board

@@ -1,3 +1,4 @@
+"""objects needed to indicate possible moves and captures when a piece is selected"""
 import pygame
 import conf
 
