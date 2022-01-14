@@ -1,4 +1,7 @@
 # garry's chess 2.0
+
+![](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/o-lenczyk/garry-s-chess-2.0/main/test-results/endpoint.json)
+
 ## goal
 The goal is to reinvent chess. Possible evolution to [fairy chess](https://en.wikipedia.org/wiki/Fairy_chess) or dungeon crawler.
 

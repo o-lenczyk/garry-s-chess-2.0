@@ -1,5 +1,5 @@
 [board]
-screen_size      = 512
+screen_size      = 666
 background_color = [70, 140, 255]
 square_color     = [140, 50, 60]
 random_colors    = false
