@@ -65,7 +65,7 @@ class Piece(pygame.sprite.Sprite):
 
                 if rules.is_occupied(potential_move):
                     break
-                elif isinstance(self, Pawn) and self.has_moved == False:
+                elif isinstance(self, Pawn) and self.has_moved is False:
                     potential_move = self.fetch_square_number(
                         temp_row + 2 * direction[0], temp_column
                     )

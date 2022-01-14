@@ -33,7 +33,7 @@ def pick_piece():
 
 def move_focused_piece_to_cursor():
     for piece in conf.all_pieces:
-        if piece.clicked == True:
+        if piece.clicked is True:
             x, y = pygame.mouse.get_pos()
             piece.rect.center = (x, y)
 
@@ -109,7 +109,7 @@ def check_if_captures(piece_above):
     for piece_below in conf.all_pieces:
         if (
             pygame.sprite.collide_rect(piece_above, piece_below)
-            and piece_below.clicked == False
+            and piece_below.clicked is False
         ):
             return piece_below
     return False

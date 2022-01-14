@@ -2,7 +2,6 @@
 import pygame
 import conf
 import board
-import piece
 import moves
 from pygame.locals import (
     K_UP,
@@ -31,7 +30,7 @@ while running:
     for event in pygame.event.get():
         if event.type == MOUSEBUTTONDOWN:
             picked = moves.pick_piece()
-        # TODO: change to isinstance(piece, Piece)
+
         elif event.type == MOUSEBUTTONUP and picked:
             moves.release_piece(picked)
         # Did the user hit a key?

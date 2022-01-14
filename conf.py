@@ -28,7 +28,7 @@ SQUARE_COLOR = SETTINGS["board"]["square_color"]
 RANDOM_COLORS = SETTINGS["board"]["random_colors"]
 FRAMERATE = SETTINGS["board"]["framerate"]
 
-if RANDOM_COLORS == True:
+if RANDOM_COLORS is True:
     BACKGROUND_COLOR = (
         random.randint(127, 200),
         random.randint(127, 200),
