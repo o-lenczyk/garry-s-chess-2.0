@@ -1,10 +1,19 @@
 """functions to set up and display the board"""
 import pygame
 import conf
-from piece import *
-from helpers import *
+import piece
+import helpers
 
-starting_piece_order = [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
+starting_piece_order = [
+    piece.Rook,
+    piece.Knight,
+    piece.Bishop,
+    piece.Queen,
+    piece.King,
+    piece.Bishop,
+    piece.Knight,
+    piece.Rook,
+]
 
 
 def draw_board():
@@ -31,14 +40,14 @@ def draw_pieces():
 
     for i in range(0, 8):
         conf.all_pieces.add(
-            BlackPawn(
+            piece.BlackPawn(
                 i * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "Black", conf.SQUARE_SIZE, i + 8
             )
         )
 
     for i in range(0, 8):
         conf.all_pieces.add(
-            WhitePawn(
+            piece.WhitePawn(
                 i * conf.SQUARE_SIZE,
                 6 * conf.SQUARE_SIZE,
                 "White",
@@ -63,7 +72,7 @@ def draw_pieces():
 
 def draw_legal_moves(legal_moves):
     for legal_move in legal_moves:
-        conf.move_indicators.add(PossibleMoves(legal_move))
+        conf.move_indicators.add(helpers.PossibleMoves(legal_move))
 
     conf.move_indicators.update()
 
@@ -75,6 +84,6 @@ def erase_legal_moves():
 
 def draw_legal_captures(legal_captures):
     for legal_capture in legal_captures:
-        conf.move_indicators.add(PossibleCaptures(legal_capture))
+        conf.move_indicators.add(helpers.PossibleCaptures(legal_capture))
 
     conf.move_indicators.update()

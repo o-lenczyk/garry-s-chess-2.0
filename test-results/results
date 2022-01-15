@@ -1,7 +1,5 @@
 ************* Module board
-board.py:4:0: W0401: Wildcard import piece (wildcard-import)
-board.py:5:0: W0401: Wildcard import helpers (wildcard-import)
-board.py:13:4: W0612: Unused variable 'rect' (unused-variable)
+board.py:22:4: W0612: Unused variable 'rect' (unused-variable)
 board.py:2:0: W0611: Unused import pygame (unused-import)
 ************* Module conf
 conf.py:43:0: E1101: Module 'pygame' has no 'init' member (no-member)
@@ -37,5 +35,5 @@ piece.py:66:16: R1723: Unnecessary "elif" after "break" (no-else-break)
 piece.py:84:4: W0107: Unnecessary pass statement (unnecessary-pass)
 
 -----------------------------------
-Your code has been rated at 7.36/10
+Your code has been rated at 7.43/10
 
