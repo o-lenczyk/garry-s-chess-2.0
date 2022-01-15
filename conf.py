@@ -40,7 +40,6 @@ if RANDOM_COLORS is True:
         random.randint(0, 100),
     )
 
-pygame.init()
 clock = pygame.time.Clock()
 
 # Set up the drawing window
@@ -84,3 +83,8 @@ def compute_square_centers_list():
                     x_cord * SQUARE_SIZE + SQUARE_SIZE / 2,
                 )
             )
+
+
+def fetch_square_number(row, column):
+    square_number = square_numbers_matrix[row][column]
+    return square_number

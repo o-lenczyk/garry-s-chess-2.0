@@ -38,3 +38,7 @@ def is_occupied(square):
         if piece.square == square:
             return True
     return False
+
+
+def in_board_range(row, column):
+    return bool(row in range(0, 8)) and (column in range(0, 8))

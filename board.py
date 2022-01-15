@@ -18,7 +18,6 @@ starting_piece_order = [
 def draw_board():
     # Give the surface a color to separate it from the background
     conf.square.fill(conf.SQUARE_COLOR)
-    rect = conf.square.get_rect()
 
     for y_cord in range(0, 8):
         for x_cord in range(0, 8):

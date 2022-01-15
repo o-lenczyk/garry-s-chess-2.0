@@ -28,16 +28,6 @@ class Piece(pygame.sprite.Sprite):
         self.legal_moves = []
         self.legal_captures = []
 
-    def in_board_range(self, row, column):
-        if (row in range(0, 8)) and (column in range(0, 8)):
-            return True
-        else:
-            return False
-
-    def fetch_square_number(self, row, column):
-        square_number = conf.square_numbers_matrix[row][column]
-        return square_number
-
     def update_row_and_column(self):
         where = np.where(conf.square_numbers_matrix == self.square)
         self.row = where[0][0]
@@ -50,38 +40,42 @@ class Piece(pygame.sprite.Sprite):
 
             temp_row = self.row
             temp_column = self.column
+
+            row_direction = direction[0]
+            column_direction = direction[1]
+
             move_range = self.move_range
 
             while (
-                temp_row + direction[0] in range(0, 8)
-                and temp_column + direction[1] in range(0, 8)
+                rules.in_board_range(
+                    temp_row + row_direction, temp_column + column_direction
+                )
                 and move_range > 0
             ):
-                potential_move = self.fetch_square_number(
-                    temp_row + direction[0], temp_column + direction[1]
+                potential_move = conf.fetch_square_number(
+                    temp_row + row_direction, temp_column + column_direction
                 )
 
                 potential_moves.append(potential_move)
 
                 if rules.is_occupied(potential_move):
                     break
-                elif isinstance(self, Pawn) and self.has_moved is False:
-                    potential_move = self.fetch_square_number(
-                        temp_row + 2 * direction[0], temp_column
+
+                if isinstance(self, Pawn) and self.has_moved is False:
+                    potential_move = conf.fetch_square_number(
+                        temp_row + 2 * row_direction, temp_column
                     )
 
                 potential_moves.append(potential_move)
 
-                temp_row += direction[0]
-                temp_column += direction[1]
+                temp_row += row_direction
+                temp_column += column_direction
                 move_range -= 1
         return potential_moves
 
 
 class Pawn(Piece):
     """abstract of a pawn. black moves down, white moves up"""
-
-    pass
 
 
 class BlackPawn(Pawn):

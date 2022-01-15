@@ -1,7 +1,5 @@
 """main loop"""
 import pygame
-import board
-import moves
 from pygame.locals import (
     K_ESCAPE,
     KEYDOWN,
@@ -10,6 +8,8 @@ from pygame.locals import (
     MOUSEBUTTONUP,
 )
 import conf
+import board
+import moves
 
 board.draw_pieces()
 
@@ -46,5 +46,3 @@ while RUNNING:
     conf.move_indicators.draw(conf.screen)
 
     conf.clock.tick(conf.FRAMERATE)
-
-pygame.quit()
