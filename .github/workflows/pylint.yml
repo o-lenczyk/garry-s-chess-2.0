@@ -28,7 +28,21 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         mkdir -p test-results
-        pylint `ls -R|grep .py$|xargs` | tee test-results/results
+        pylint --disable=raw-checker-failed \
+        --disable=bad-inline-option \
+        --disable=locally-disabled \
+        --disable=file-ignored \
+        --disable=suppressed-message \
+        --disable=useless-suppression \
+        --disable=deprecated-pragma \
+        --disable=use-symbolic-message-instead \
+        --disable=missing-module-docstring \
+        --disable=unused-wildcard-import \
+        --disable=missing-class-docstring \
+        --disable=missing-function-docstring \
+        --disable=too-few-public-methods \
+        --disable=invalid-name \
+        `ls -R|grep .py$|xargs` | tee test-results/results
 
     - name: Extract score
       run: |
