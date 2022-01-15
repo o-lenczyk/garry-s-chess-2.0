@@ -1,7 +1,7 @@
 """functions needed to move and capture pieces"""
 import pygame
-import conf
 import numpy as np
+import conf
 import rules
 import board
 

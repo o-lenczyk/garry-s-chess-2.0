@@ -1,8 +1,8 @@
 """global configuration variables"""
-import pygame
-import numpy as np
 import logging
 import random
+import pygame
+import numpy as np
 import toml
 
 all_pieces = pygame.sprite.Group()
