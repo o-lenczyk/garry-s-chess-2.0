@@ -1,5 +1,4 @@
 """functions to set up and display the board"""
-import pygame
 import conf
 import piece
 import helpers

@@ -1,19 +1,15 @@
 """main loop"""
 import pygame
-import conf
 import board
 import moves
 from pygame.locals import (
-    K_UP,
-    K_DOWN,
-    K_LEFT,
-    K_RIGHT,
     K_ESCAPE,
     KEYDOWN,
     QUIT,
     MOUSEBUTTONDOWN,
     MOUSEBUTTONUP,
 )
+import conf
 
 board.draw_pieces()
 
