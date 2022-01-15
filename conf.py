@@ -76,8 +76,11 @@ square_centers_list = []
 
 
 def compute_square_centers_list():
-    for x in range(0, 8):
-        for y in range(0, 8):
+    for x_cord in range(0, 8):
+        for y_cord in range(0, 8):
             square_centers_list.append(
-                (y * SQUARE_SIZE + SQUARE_SIZE / 2, x * SQUARE_SIZE + SQUARE_SIZE / 2)
+                (
+                    y_cord * SQUARE_SIZE + SQUARE_SIZE / 2,
+                    x_cord * SQUARE_SIZE + SQUARE_SIZE / 2,
+                )
             )

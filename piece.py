@@ -8,7 +8,7 @@ import rules
 class Piece(pygame.sprite.Sprite):
     """abstract of a piece. will contain all the variables but possible moves"""
 
-    def __init__(self, x, y, color, square_size, square):
+    def __init__(self, x_cords, y_cords, color, square_size, square):
         pygame.sprite.Sprite.__init__(self)
         # class name of Pawn will have color, so this code will avoid BlackBlackPawn.png
         self.type = type(self).__name__.replace("Black", "").replace("White", "")
@@ -19,7 +19,7 @@ class Piece(pygame.sprite.Sprite):
         # resize the image to size of square
         self.image = pygame.transform.scale(self.image, (square_size, square_size))
         self.rect = self.image.get_rect()
-        self.rect.topleft = (x, y)
+        self.rect.topleft = (x_cords, y_cords)
         self.clicked = False
         self.has_moved = False
         self.square = square

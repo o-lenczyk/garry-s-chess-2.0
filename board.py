@@ -12,11 +12,12 @@ def draw_board():
     conf.square.fill(conf.SQUARE_COLOR)
     rect = conf.square.get_rect()
 
-    for y in range(0, 8):
-        for x in range(0, 8):
-            if y % 2 ^ x % 2:
+    for y_cord in range(0, 8):
+        for x_cord in range(0, 8):
+            if y_cord % 2 ^ x_cord % 2:
                 conf.screen.blit(
-                    conf.square, [y * (conf.SQUARE_SIZE), x * (conf.SQUARE_SIZE)]
+                    conf.square,
+                    [y_cord * (conf.SQUARE_SIZE), x_cord * (conf.SQUARE_SIZE)],
                 )
 
 

@@ -7,10 +7,10 @@ import board
 
 
 def pick_piece():
-    x, y = pygame.mouse.get_pos()
-    conf.log.debug("clicked  x: %s, y: %s", x, y)
+    x_cords, y_cords = pygame.mouse.get_pos()
+    conf.log.debug("clicked  x: %s, y: %s", x_cords, y_cords)
     for piece in conf.all_pieces:
-        if piece.rect.collidepoint(x, y):
+        if piece.rect.collidepoint(x_cords, y_cords):
             piece.clicked = True
 
             piece.legal_moves = rules.get_legal_moves(piece)
@@ -34,27 +34,27 @@ def pick_piece():
 def move_focused_piece_to_cursor():
     for piece in conf.all_pieces:
         if piece.clicked is True:
-            x, y = pygame.mouse.get_pos()
-            piece.rect.center = (x, y)
+            x_cords, y_cords = pygame.mouse.get_pos()
+            piece.rect.center = (x_cords, y_cords)
 
 
-def closest_square(x, y):
-    mouse_position = [(x, y)]
+def closest_square(x_cords, y_cords):
+    mouse_position = [(x_cords, y_cords)]
     diffs = np.abs(np.array(conf.square_centers_list) - np.array(mouse_position))
     dists = np.sum(diffs, axis=1)
     closest_point_index = np.argmin(dists)
     return closest_point_index
 
 
-def get_closest_square_center(x, y):
-    closest_square_index = closest_square(x, y)
+def get_closest_square_center(x_cords, y_cords):
+    closest_square_index = closest_square(x_cords, y_cords)
     closest_square_center = conf.square_centers_list[closest_square_index]
     return closest_square_center
 
 
 def release_piece(piece):
-    x, y = pygame.mouse.get_pos()
-    current_square = closest_square(x, y)
+    x_cords, y_cords = pygame.mouse.get_pos()
+    current_square = closest_square(x_cords, y_cords)
 
     conf.log.debug("current square: %s", current_square)
 
@@ -66,8 +66,8 @@ def release_piece(piece):
         return False
 
     # magnet to closest square center
-    x, y = get_closest_square_center(x, y)
-    piece.rect.center = (x, y)
+    x_cords, y_cords = get_closest_square_center(x_cords, y_cords)
+    piece.rect.center = (x_cords, y_cords)
 
     piece_captured = check_if_captures(piece)
 
