@@ -61,21 +61,53 @@ class Piece(pygame.sprite.Sprite):
                 if rules.is_occupied(potential_move):
                     break
 
-                if isinstance(self, Pawn) and self.has_moved is False:
-                    potential_move = conf.fetch_square_number(
-                        temp_row + 2 * row_direction, temp_column
-                    )
-
-                potential_moves.append(potential_move)
-
                 temp_row += row_direction
                 temp_column += column_direction
                 move_range -= 1
         return potential_moves
 
+    def get_potential_captures(self):
+        potential_captures = self.get_potential_moves()
+        return potential_captures
+
 
 class Pawn(Piece):
     """abstract of a pawn. black moves down, white moves up"""
+
+    def get_potential_moves(self):
+        row_direction = list(self.move_directions)[0][0]
+        potential_moves = []
+        temp_row = self.row
+        temp_column = self.column
+
+        potential_move = conf.fetch_square_number(temp_row + row_direction, temp_column)
+
+        if rules.is_occupied(potential_move):
+            return potential_moves
+        else:
+            potential_moves.append(potential_move)
+
+        if self.has_moved is False:
+            potential_move = conf.fetch_square_number(
+                temp_row + 2 * row_direction, temp_column
+            )
+            potential_moves.append(potential_move)
+        return potential_moves
+
+    def get_potential_captures(self):
+        potential_captures = []
+
+        for capture_direction in self.capture_directions:
+            temp_row = self.row
+            temp_column = self.column
+            row_direction = capture_direction[0]
+            column_direction = capture_direction[1]
+
+            potential_capture = conf.fetch_square_number(
+                temp_row + row_direction, temp_column + column_direction
+            )
+            potential_captures.append(potential_capture)
+        return potential_captures
 
 
 class BlackPawn(Pawn):

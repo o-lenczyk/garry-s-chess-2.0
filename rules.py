@@ -2,7 +2,7 @@ import conf
 
 
 def get_legal_captures(piece):
-    potential_captures = piece.get_potential_moves()
+    potential_captures = piece.get_potential_captures()
     legal_captures = []
 
     for potential_capture in potential_captures:

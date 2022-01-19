@@ -20,6 +20,7 @@ RUNNING = True
 conf.permute_square_names()
 conf.compute_square_centers_list()
 
+
 # Main loop
 while RUNNING:
     # Look at every event in the queue

@@ -13,7 +13,7 @@ The goal is to reinvent chess. Possible evolution to [fairy chess](https://en.wi
 - almost everything else, including:
   - en passant
   - castling
-  - promition
+  - promotion
   - pin to king
   - and so on
 
