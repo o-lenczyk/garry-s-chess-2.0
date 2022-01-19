@@ -84,8 +84,8 @@ class Pawn(Piece):
 
         if rules.is_occupied(potential_move):
             return potential_moves
-        else:
-            potential_moves.append(potential_move)
+
+        potential_moves.append(potential_move)
 
         if self.has_moved is False:
             potential_move = conf.fetch_square_number(

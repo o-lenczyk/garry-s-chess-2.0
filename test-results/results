@@ -9,8 +9,7 @@ moves.py:9:0: R1710: Either all return statements in a function should return an
 ************* Module piece
 piece.py:8:0: R0902: Too many instance attributes (11/7) (too-many-instance-attributes)
 piece.py:11:4: R0913: Too many arguments (6/5) (too-many-arguments)
-piece.py:85:8: R1705: Unnecessary "else" after "return" (no-else-return)
 
 -----------------------------------
-Your code has been rated at 9.05/10
+Your code has been rated at 9.08/10
 
