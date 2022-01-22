@@ -54,6 +54,7 @@ surf_center = (
 )
 
 square_numbers_matrix = np.arange(64).reshape(8, 8)
+square_numbers_matrix = np.flipud(square_numbers_matrix)
 
 square_names_list = []
 
@@ -62,11 +63,11 @@ square_names_list = []
 # a7 b7 c7 ...
 # a6 b6 c6 ...
 # .. .. .. ...
-# [0]=a1 [8]=a7 [56]=a1 [63]=h1
+# [56]=a1 [63]=a8 [0]=a1 [7]=h1
 
 
 def permute_square_names():
-    for number in range(8, 0, -1):
+    for number in range(1, 9):
         for letter in ("a", "b", "c", "d", "e", "f", "g", "h"):
             square_names_list.append(letter + str(number))
 
@@ -75,7 +76,7 @@ square_centers_list = []
 
 
 def compute_square_centers_list():
-    for x_cord in range(0, 8):
+    for x_cord in range(7, -1, -1):
         for y_cord in range(0, 8):
             square_centers_list.append(
                 (

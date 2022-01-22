@@ -32,14 +32,18 @@ def draw_pieces():
     for i in range(0, 8):
         conf.all_pieces.add(
             starting_piece_order[i](
-                i * conf.SQUARE_SIZE, 0, "Black", conf.SQUARE_SIZE, i
+                i * conf.SQUARE_SIZE, 0, "Black", conf.SQUARE_SIZE, i + 56
             )
         )
 
     for i in range(0, 8):
         conf.all_pieces.add(
             piece.BlackPawn(
-                i * conf.SQUARE_SIZE, conf.SQUARE_SIZE, "Black", conf.SQUARE_SIZE, i + 8
+                i * conf.SQUARE_SIZE,
+                conf.SQUARE_SIZE,
+                "Black",
+                conf.SQUARE_SIZE,
+                i + 48,
             )
         )
 
@@ -50,7 +54,7 @@ def draw_pieces():
                 6 * conf.SQUARE_SIZE,
                 "White",
                 conf.SQUARE_SIZE,
-                i + 48,
+                i + 8,
             )
         )
 
@@ -61,7 +65,7 @@ def draw_pieces():
                 7 * conf.SQUARE_SIZE,
                 "White",
                 conf.SQUARE_SIZE,
-                i + 56,
+                i,
             )
         )
 

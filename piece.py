@@ -103,10 +103,13 @@ class Pawn(Piece):
             row_direction = capture_direction[0]
             column_direction = capture_direction[1]
 
-            potential_capture = conf.fetch_square_number(
+            if rules.in_board_range(
                 temp_row + row_direction, temp_column + column_direction
-            )
-            potential_captures.append(potential_capture)
+            ):
+                potential_capture = conf.fetch_square_number(
+                    temp_row + row_direction, temp_column + column_direction
+                )
+                potential_captures.append(potential_capture)
         return potential_captures
 
 
