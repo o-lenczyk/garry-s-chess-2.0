@@ -36,6 +36,9 @@ class Piece(pygame.sprite.Sprite):
     def get_potential_moves(self):
         potential_moves = []
 
+        if self.type == "King":
+            self.check_for_castling()
+
         for direction in self.move_directions:
 
             temp_row = self.row
@@ -44,16 +47,17 @@ class Piece(pygame.sprite.Sprite):
             row_direction = direction[0]
             column_direction = direction[1]
 
+            potential_move_row = temp_row + row_direction
+            potential_move_column = temp_column + column_direction
+
             move_range = self.move_range
 
             while (
-                rules.in_board_range(
-                    temp_row + row_direction, temp_column + column_direction
-                )
+                rules.in_board_range(potential_move_row, potential_move_column)
                 and move_range > 0
             ):
                 potential_move = conf.fetch_square_number(
-                    temp_row + row_direction, temp_column + column_direction
+                    potential_move_row, potential_move_column
                 )
 
                 potential_moves.append(potential_move)
@@ -61,9 +65,10 @@ class Piece(pygame.sprite.Sprite):
                 if rules.is_occupied(potential_move):
                     break
 
-                temp_row += row_direction
-                temp_column += column_direction
+                potential_move_row += row_direction
+                potential_move_column += column_direction
                 move_range -= 1
+
         return potential_moves
 
     def get_potential_captures(self):
@@ -146,6 +151,62 @@ class King(Piece):
     }
     move_range = 1
     icon = "♔"
+
+    def get_potential_moves(self):
+        potential_moves = self.get_potential_captures()
+
+        castling_squares = self.check_for_castling()
+
+        for castling_square in castling_squares:
+            potential_moves.append(castling_square)
+
+        return potential_moves
+
+    def get_potential_captures(self):
+        potential_captures = []
+
+        for direction in self.move_directions:
+
+            row_direction = direction[0]
+            column_direction = direction[1]
+
+            potential_move_row = self.row + row_direction
+            potential_move_column = self.column + column_direction
+
+            if rules.in_board_range(potential_move_row, potential_move_column):
+                potential_move = conf.fetch_square_number(
+                    potential_move_row, potential_move_column
+                )
+
+                potential_captures.append(potential_move)
+
+        return potential_captures
+
+    def check_for_castling(self):
+        castling_squares = []
+        for piece in conf.all_pieces:
+            if (
+                self.has_moved is False
+                and piece.has_moved is False
+                and piece.color is self.color
+                and piece.type == "Rook"
+            ):
+                if (
+                    piece.square > self.square
+                    and not rules.is_occupied(self.square + 1)
+                    and not rules.is_occupied(self.square + 2)
+                ):
+                    conf.log.debug("O-O possible")
+                    castling_squares.append(self.square + 2)
+                if (
+                    piece.square < self.square
+                    and not rules.is_occupied(self.square - 1)
+                    and not rules.is_occupied(self.square - 2)
+                    and not rules.is_occupied(self.square - 3)
+                ):
+                    conf.log.debug("O-O-O possible")
+                    castling_squares.append(self.square - 2)
+        return castling_squares
 
 
 class Queen(Piece):

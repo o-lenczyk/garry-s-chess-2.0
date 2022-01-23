@@ -38,6 +38,8 @@ def main():
             # Did the user click the window close button? If so, stop the loop.
             elif event.type == QUIT:
                 RUNNING = False
+                pygame.quit()
+                exit()
 
         moves.move_focused_piece_to_cursor()
 

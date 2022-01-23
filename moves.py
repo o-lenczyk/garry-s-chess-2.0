@@ -56,7 +56,7 @@ def release_piece(piece):
     x_cords, y_cords = pygame.mouse.get_pos()
     current_square = closest_square(x_cords, y_cords)
 
-    conf.log.debug("current square: %s", current_square)
+    conf.log.debug("dropping on: %s", current_square)
 
     if (current_square not in piece.legal_moves) and (
         current_square not in piece.legal_captures
@@ -65,9 +65,7 @@ def release_piece(piece):
         board.erase_legal_moves()
         return False
 
-    # magnet to closest square center
-    x_cords, y_cords = get_closest_square_center(x_cords, y_cords)
-    piece.rect.center = (x_cords, y_cords)
+    set_sprite_center(piece, x_cords, y_cords)
 
     piece_captured = check_if_captures(piece)
 
@@ -85,13 +83,59 @@ def release_piece(piece):
             conf.square_names_list[current_square],
         )
 
-    piece.clicked = False
-    piece.has_moved = True
-    piece.square = current_square
-    piece.update_row_and_column()
+    if piece.type == "King" and (abs(piece.square - current_square) > 1):
+        conf.log.debug("castling")
+        handle_castling(piece, current_square)
 
+    move_piece_to_square(piece, current_square)
     board.erase_legal_moves()
     return True
+
+
+def set_sprite_center(piece, x_cords, y_cords):
+    # magnet sprite to closest square center
+    x_cords, y_cords = get_closest_square_center(x_cords, y_cords)
+    piece.rect.center = (x_cords, y_cords)
+
+
+def handle_castling(king, target_king_square):
+    if king.square + 2 == target_king_square:
+        for piece in conf.all_pieces:
+            if (
+                piece.has_moved is False
+                and piece.color is king.color
+                and piece.type == "Rook"
+                and piece.square > king.square
+            ):
+                rook_x_coords = conf.square_centers_list[king.square + 1][0]
+                rook_y_coords = conf.square_centers_list[king.square + 1][1]
+                set_sprite_center(piece, rook_x_coords, rook_y_coords)
+                move_piece_to_square(piece, king.square + 1)
+                conf.log.debug("short castle")
+        conf.log.debug("short castle")
+    elif king.square - 2 == target_king_square:
+        for piece in conf.all_pieces:
+            if (
+                piece.has_moved is False
+                and piece.color is king.color
+                and piece.type == "Rook"
+                and piece.square < king.square
+            ):
+                rook_x_coords = conf.square_centers_list[king.square - 1][0]
+                rook_y_coords = conf.square_centers_list[king.square - 1][1]
+                set_sprite_center(piece, rook_x_coords, rook_y_coords)
+                move_piece_to_square(piece, king.square - 1)
+        conf.log.debug("long castle")
+    else:
+        conf.log.error("castling error")
+        exit()
+
+
+def move_piece_to_square(piece, target_square):
+    piece.clicked = False
+    piece.has_moved = True
+    piece.square = target_square
+    piece.update_row_and_column()
 
 
 def return_to_original_square(piece):
