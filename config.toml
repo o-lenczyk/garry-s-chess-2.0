@@ -1,6 +1,6 @@
 [board]
 screen_size      = 800
-background_color = [70, 140, 255]
-square_color     = [140, 50, 60]
+background_color = [240, 217, 181]
+square_color     = [181, 136, 99]
 random_colors    = false
 framerate        = 60
