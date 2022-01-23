@@ -3,7 +3,11 @@
 ![](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/o-lenczyk/garry-s-chess-2.0/main/test-results/endpoint.json)
 
 ## goal
-The goal is to reinvent chess. Possible evolution to [fairy chess](https://en.wikipedia.org/wiki/Fairy_chess) or dungeon crawler.
+the goal is to reinvent chess. possible evolution to [fairy chess](https://en.wikipedia.org/wiki/Fairy_chess) or dungeon crawler
+
+## gui
+- [x] pygame
+- [ ] cli
 
 ## what is working
 - [ ] side to move
@@ -21,11 +25,16 @@ The goal is to reinvent chess. Possible evolution to [fairy chess](https://en.wi
 - [ ] tests
 - [ ] [UCI](https://www.chessprogramming.org/UCI)
 
-## install requirements
-`python3 -m pip install -r requirements.txt --user`
+## how to run - linux
+either:
+- download pyinstaller executable (releases)
+- download pyinstaller package with python and requirements installed
+- clone repository and install requirements manually
+  - `python3 -m pip install -r requirements.txt --user`  
+  - run `main.py`
 
-## start
-run `main.py`
+## how to run - windows
+- clone the repository and install the requirements
 
 ## code formatter
 black
@@ -34,4 +43,4 @@ black
 are explained in matrix jupyter notebook
 
 ## board representiation
-Hybrid (redutant solution) between piece-list and bitboard is used
+hybrid (redutant solution) between piece-list and bitboard is used

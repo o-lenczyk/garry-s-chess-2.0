@@ -1,6 +1,9 @@
 name: pyinstaller
 
-on: [push]
+on:
+  push:
+    tags:
+      - "*"
 
 jobs:
   build:
@@ -68,11 +71,16 @@ jobs:
           name: pyinstaller-executable
           path: chess-linux-executable.tar.gz
 
+      - name: Get latest release version number
+        id: get_version
+        uses: battila7/get-version-action@v2
+
       - name: Create Release
-      - uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@v1
         with:
+          tag: "0.0.0"
           artifacts: "*tar.gz"
-          bodyFile: "CHANGELOG.md"
+          bodyFile: "release-notes/${{ steps.get_version.outputs.version }}}"
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Linux Package
