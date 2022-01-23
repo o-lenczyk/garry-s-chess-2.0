@@ -69,16 +69,11 @@ jobs:
           path: chess-linux-executable.tar.gz
 
       - name: Create Release
-        uses: actions/create-release@v1
-        id: create_release
+      - uses: ncipollo/release-action@v1
         with:
-          draft: false
-          prerelease: false
-          release_name: "test"
-          tag_name: ${{ github.ref }}
-          body_path: CHANGELOG.md
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+          artifacts: "*tar.gz"
+          bodyFile: "CHANGELOG.md"
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Linux Package
         uses: actions/upload-release-asset@v1
