@@ -80,15 +80,5 @@ jobs:
         with:
           tag: "0.0.0"
           artifacts: "*tar.gz"
-          bodyFile: "release-notes/${{ steps.get_version.outputs.version }}}"
+          bodyFile: "release-notes/${{ steps.get_version.outputs.version }}.md"
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload Linux Package
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: chess-linux.tar.gz
-          asset_name: chess-linux.tar.gz
-          asset_content_type: application/gzip
