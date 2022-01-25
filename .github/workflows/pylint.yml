@@ -9,66 +9,73 @@ jobs:
       matrix:
         python-version: ["3.10"]
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: '0'
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: "0"
 
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pylint
-        pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pylint
+          pip install -r requirements.txt
 
-    - name: Analysing the code with pylint
-      run: |
-        mkdir -p test-results
-        pylint --disable=raw-checker-failed \
-        --disable=bad-inline-option \
-        --disable=locally-disabled \
-        --disable=file-ignored \
-        --disable=suppressed-message \
-        --disable=useless-suppression \
-        --disable=deprecated-pragma \
-        --disable=use-symbolic-message-instead \
-        --disable=missing-module-docstring \
-        --disable=unused-wildcard-import \
-        --disable=missing-class-docstring \
-        --disable=missing-function-docstring \
-        --disable=too-few-public-methods \
-        --disable=invalid-name \
-        `ls -R|grep .py$|xargs` | tee test-results/results
+      - name: Analysing the code with pylint
+        run: |
+          mkdir -p test-results
+          pylint --disable=raw-checker-failed \
+          --disable=bad-inline-option \
+          --disable=locally-disabled \
+          --disable=file-ignored \
+          --disable=suppressed-message \
+          --disable=useless-suppression \
+          --disable=deprecated-pragma \
+          --disable=use-symbolic-message-instead \
+          --disable=missing-module-docstring \
+          --disable=unused-wildcard-import \
+          --disable=missing-class-docstring \
+          --disable=missing-function-docstring \
+          --disable=too-few-public-methods \
+          --disable=invalid-name \
+          `ls -R|grep .py$|xargs` | tee test-results/results
 
-    - name: Extract score
-      run: |
-        grep "rated at" test-results/results | awk '{print $7}' > test-results/score.txt 
+      - name: Extract score
+        run: |
+          grep "rated at" test-results/results | awk '{print $7}' > test-results/score.txt
 
-    - name: Create shieds.io endpoint
-      run: |
-        cat <<EOT > test-results/endpoint.json
-        {
-          "schemaVersion": 1,
-          "label": "pylint score",
-          "message": "$(cat test-results/score.txt)",
-          "color": "red"
-        }
-        EOT
+      - name: Create shieds.io endpoint
+        run: |
+          cat <<EOT > test-results/endpoint.json
+          {
+            "schemaVersion": 1,
+            "label": "pylint score",
+            "message": "$(cat test-results/score.txt)",
+            "color": "red"
+          }
+          EOT
 
-    - name: Commit score
-      run: |
-        git config --global user.name 'Action Bot'
-        git config --global user.email 'actionbot@noreply.com'
-        git add test-results/*
-        git commit --amend --no-edit
-        git push --force
+      - name: Import GPG Key
+        uses: crazy-max/ghaction-import-gpg@v1
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.BOT_PGP_KEY }}
 
-    - name: Upload score
-      uses: actions/upload-artifact@v2
-      with:
-        name: score
-        path: test-results/score.txt
+      - name: Commit score
+        run: |
+          git config --global user.name 'HAL9300'
+          git config --global user.email 'piahoo+github.bot@gmail.com'
+          git config --global commit.gpgsign true
+
+          git add test-results/*
+          git commit --amend --no-edit
+          git push --force
+
+      - name: Upload score
+        uses: actions/upload-artifact@v2
+        with:
+          name: score
+          path: test-results/score.txt
