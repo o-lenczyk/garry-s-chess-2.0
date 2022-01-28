@@ -83,7 +83,7 @@ def release_piece(piece):
             conf.square_names_list[current_square],
         )
 
-    if piece.type == "King" and (abs(piece.square - current_square) > 1):
+    if piece.type == "King" and (5 > abs(piece.square - current_square) > 1):
         conf.log.debug("castling")
         handle_castling(piece, current_square)
 

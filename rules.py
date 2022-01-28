@@ -42,3 +42,12 @@ def is_occupied(square):
 
 def in_board_range(row, column):
     return bool(row in range(0, 8)) and (column in range(0, 8))
+
+
+def is_castling_square_attacked(square, my_color):
+    for enemy in conf.all_pieces:
+        if (enemy.color is not my_color) and enemy.type is not "King":
+            for enemy_move in get_legal_moves(enemy):
+                if enemy_move == square:
+                    return True
+    return False
