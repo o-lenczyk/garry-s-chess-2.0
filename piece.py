@@ -194,14 +194,18 @@ class King(Piece):
                 if (
                     piece.square > self.square
                     and not rules.is_occupied(self.square + 1)
+                    and not rules.is_castling_square_attacked(self.square+1, piece.color)
                     and not rules.is_occupied(self.square + 2)
+                    and not rules.is_castling_square_attacked(self.square+2, piece.color)
                 ):
                     conf.log.debug("O-O possible")
                     castling_squares.append(self.square + 2)
                 if (
                     piece.square < self.square
                     and not rules.is_occupied(self.square - 1)
+                    and not rules.is_castling_square_attacked(self.square-1, piece.color)
                     and not rules.is_occupied(self.square - 2)
+                    and not rules.is_castling_square_attacked(self.square-2, piece.color)
                     and not rules.is_occupied(self.square - 3)
                 ):
                     conf.log.debug("O-O-O possible")

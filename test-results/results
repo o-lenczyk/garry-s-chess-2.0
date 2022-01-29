@@ -12,9 +12,10 @@ moves.py:131:8: R1722: Consider using sys.exit() (consider-using-sys-exit)
 ************* Module piece
 piece.py:8:0: R0902: Too many instance attributes (11/7) (too-many-instance-attributes)
 piece.py:11:4: R0913: Too many arguments (6/5) (too-many-arguments)
+piece.py:204:20: R0916: Too many boolean expressions in if statement (6/5) (too-many-boolean-expressions)
 ************* Module rules
 rules.py:49:45: R0123: Comparison to literal (literal-comparison)
 
 -----------------------------------
-Your code has been rated at 9.05/10
+Your code has been rated at 9.02/10
 
