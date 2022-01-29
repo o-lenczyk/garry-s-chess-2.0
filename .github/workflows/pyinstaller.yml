@@ -78,7 +78,7 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          tag: "0.0.0"
+          tag: ${{ steps.get_version.outputs.version }}
           artifacts: "*tar.gz"
           bodyFile: "release-notes/${{ steps.get_version.outputs.version }}.md"
           token: ${{ secrets.GITHUB_TOKEN }}

@@ -7,6 +7,8 @@ import rules
 
 class Piece(pygame.sprite.Sprite):
     """abstract of a piece. will contain all the variables but possible moves"""
+    """TODO: square_size can be imported from conf. x_cords, y cords can be fetched from conf.compute_square_centers_list"""
+    """TODO: use square center for image positioning instead of TOPLEFT"""
 
     def __init__(self, x_cords, y_cords, color, square_size, square):
         pygame.sprite.Sprite.__init__(self)

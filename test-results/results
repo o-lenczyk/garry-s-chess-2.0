@@ -7,15 +7,27 @@ main.py:3:0: E0611: No name 'MOUSEBUTTONUP' in module 'pygame.locals' (no-name-i
 main.py:41:16: E1101: Module 'pygame' has no 'quit' member (no-member)
 main.py:42:16: R1722: Consider using sys.exit() (consider-using-sys-exit)
 ************* Module moves
-moves.py:9:0: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
-moves.py:132:8: R1722: Consider using sys.exit() (consider-using-sys-exit)
+moves.py:13:8: W0621: Redefining name 'piece' from outer scope (line 7) (redefined-outer-name)
+moves.py:10:0: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
+moves.py:39:8: W0621: Redefining name 'piece' from outer scope (line 7) (redefined-outer-name)
+moves.py:59:18: W0621: Redefining name 'piece' from outer scope (line 7) (redefined-outer-name)
+moves.py:109:24: W0621: Redefining name 'piece' from outer scope (line 7) (redefined-outer-name)
+moves.py:118:22: W0621: Redefining name 'piece' from outer scope (line 7) (redefined-outer-name)
+moves.py:126:12: W0621: Redefining name 'piece' from outer scope (line 7) (redefined-outer-name)
+moves.py:154:8: R1722: Consider using sys.exit() (consider-using-sys-exit)
+moves.py:157:25: W0621: Redefining name 'piece' from outer scope (line 7) (redefined-outer-name)
+moves.py:164:30: W0621: Redefining name 'piece' from outer scope (line 7) (redefined-outer-name)
+moves.py:185:12: W0621: Redefining name 'piece' from outer scope (line 7) (redefined-outer-name)
 ************* Module piece
+piece.py:10:0: C0301: Line too long (124/100) (line-too-long)
 piece.py:8:0: R0902: Too many instance attributes (11/7) (too-many-instance-attributes)
-piece.py:11:4: R0913: Too many arguments (6/5) (too-many-arguments)
-piece.py:204:20: R0916: Too many boolean expressions in if statement (6/5) (too-many-boolean-expressions)
+piece.py:10:4: W0105: String statement has no effect (pointless-string-statement)
+piece.py:11:4: W0105: String statement has no effect (pointless-string-statement)
+piece.py:13:4: R0913: Too many arguments (6/5) (too-many-arguments)
+piece.py:206:20: R0916: Too many boolean expressions in if statement (6/5) (too-many-boolean-expressions)
 ************* Module rules
 rules.py:49:45: R0123: Comparison to literal (literal-comparison)
 
 -----------------------------------
-Your code has been rated at 9.03/10
+Your code has been rated at 8.77/10
 
