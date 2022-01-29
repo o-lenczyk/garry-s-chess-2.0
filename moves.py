@@ -28,6 +28,7 @@ def pick_piece():
                 piece.icon,
                 conf.square_names_list[piece.square],
             )
+            conf.all_pieces.move_to_front(piece)
             return piece
 
 

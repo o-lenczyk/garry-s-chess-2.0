@@ -5,7 +5,7 @@ import pygame
 import numpy as np
 import toml
 
-all_pieces = pygame.sprite.Group()
+all_pieces = pygame.sprite.LayeredUpdates()
 move_indicators = pygame.sprite.Group()
 
 logging.basicConfig(
