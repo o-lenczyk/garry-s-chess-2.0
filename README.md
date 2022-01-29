@@ -15,13 +15,16 @@ the goal is to reinvent chess. possible evolution to [fairy chess](https://en.wi
 - [x] piece captures
 - [x] possible moves indicators
 - [x] castling
+- [x] autopromotion to queen
+- [ ] promotion to other pieces
 - [ ] en passant
-- [ ] promotion
 - [ ] checks
 - [ ] pin to king
 - [ ] stealmate
 - [ ] fifty move rule
 - [ ] three repetitions rule
+- [ ] algebraic notation
+- [ ] load from [FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation)
 - [ ] tests
 - [ ] [UCI](https://www.chessprogramming.org/UCI)
 

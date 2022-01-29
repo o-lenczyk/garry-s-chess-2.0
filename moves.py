@@ -4,6 +4,7 @@ import numpy as np
 import conf
 import rules
 import board
+import piece
 
 
 def pick_piece():
@@ -26,6 +27,8 @@ def pick_piece():
                 "clicked on: %s %s, from %s",
                 piece.color,
                 piece.icon,
+
+
                 conf.square_names_list[piece.square],
             )
             conf.all_pieces.move_to_front(piece)
@@ -89,9 +92,28 @@ def release_piece(piece):
         handle_castling(piece, current_square)
 
     move_piece_to_square(piece, current_square)
+
+    if check_for_promotion(piece):
+        autopromotion_to_queen(piece)
+
     board.erase_legal_moves()
     return True
 
+def autopromotion_to_queen(pawn):
+    x_cords, y_cords=conf.square_centers_list[pawn.square]
+    x_cords=x_cords-conf.SQUARE_SIZE/2
+    y_cords=y_cords-conf.SQUARE_SIZE/2
+    conf.all_pieces.add(piece.Queen(x_cords,y_cords, pawn.color, conf.SQUARE_SIZE, pawn.square))
+    conf.all_pieces.remove(pawn)
+
+def check_for_promotion(piece):
+    if piece.type == "Pawn" and (piece.color == "White" and 63>=piece.square>=56):
+        conf.log.info("promotion")
+        return True
+    if piece.type == "Pawn" and (piece.color == "Black" and 7>=piece.square>=0):
+        conf.log.info("promotion")
+        return True
+    return False
 
 def set_sprite_center(piece, x_cords, y_cords):
     # magnet sprite to closest square center
