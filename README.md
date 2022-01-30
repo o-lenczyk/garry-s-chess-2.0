@@ -18,8 +18,8 @@ the goal is to reinvent chess. possible evolution to [fairy chess](https://en.wi
 - [x] autopromotion to queen
 - [ ] promotion to other pieces
 - [ ] en passant
-- [ ] checks
-- [ ] pin to king
+- [x] checks
+- [x] pin to king
 - [ ] stealmate
 - [ ] fifty move rule
 - [ ] three repetitions rule

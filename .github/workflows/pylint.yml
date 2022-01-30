@@ -72,7 +72,7 @@ jobs:
 
           git add test-results/*
           git commit --amend --no-edit
-          git push --force
+          git push origin master --force
 
       - name: Upload score
         uses: actions/upload-artifact@v2

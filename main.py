@@ -34,8 +34,7 @@ def main():
             # Did the user hit a key?
             elif event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
-                    RUNNING = False
-            # Did the user click the window close button? If so, stop the loop.
+                    RUNNING = False 
             elif event.type == QUIT:
                 RUNNING = False
                 pygame.quit()

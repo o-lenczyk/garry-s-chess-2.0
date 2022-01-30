@@ -15,7 +15,7 @@ def pick_piece():
             piece.clicked = True
 
             piece.legal_moves = rules.get_legal_moves(piece)
-            piece.legal_captures = rules.get_legal_captures(piece)
+            piece.legal_captures = rules.get_legal_captures(piece, True)
 
             conf.log.debug("legal moves: %s", piece.legal_moves)
             conf.log.debug("legal captures: %s", piece.legal_captures)
@@ -27,8 +27,6 @@ def pick_piece():
                 "clicked on: %s %s, from %s",
                 piece.color,
                 piece.icon,
-
-
                 conf.square_names_list[piece.square],
             )
             conf.all_pieces.move_to_front(piece)
@@ -99,21 +97,26 @@ def release_piece(piece):
     board.erase_legal_moves()
     return True
 
+
 def autopromotion_to_queen(pawn):
-    x_cords, y_cords=conf.square_centers_list[pawn.square]
-    x_cords=x_cords-conf.SQUARE_SIZE/2
-    y_cords=y_cords-conf.SQUARE_SIZE/2
-    conf.all_pieces.add(piece.Queen(x_cords,y_cords, pawn.color, conf.SQUARE_SIZE, pawn.square))
+    x_cords, y_cords = conf.square_centers_list[pawn.square]
+    x_cords = x_cords - conf.SQUARE_SIZE / 2
+    y_cords = y_cords - conf.SQUARE_SIZE / 2
+    conf.all_pieces.add(
+        piece.Queen(x_cords, y_cords, pawn.color, conf.SQUARE_SIZE, pawn.square)
+    )
     conf.all_pieces.remove(pawn)
 
+
 def check_for_promotion(piece):
-    if piece.type == "Pawn" and (piece.color == "White" and 63>=piece.square>=56):
+    if piece.type == "Pawn" and (piece.color == "White" and 63 >= piece.square >= 56):
         conf.log.info("promotion")
         return True
-    if piece.type == "Pawn" and (piece.color == "Black" and 7>=piece.square>=0):
+    if piece.type == "Pawn" and (piece.color == "Black" and 7 >= piece.square >= 0):
         conf.log.info("promotion")
         return True
     return False
+
 
 def set_sprite_center(piece, x_cords, y_cords):
     # magnet sprite to closest square center
