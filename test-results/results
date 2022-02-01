@@ -21,14 +21,22 @@ moves.py:167:30: W0621: Redefining name 'piece' from outer scope (line 7) (redef
 moves.py:188:12: W0621: Redefining name 'piece' from outer scope (line 7) (redefined-outer-name)
 ************* Module piece
 piece.py:10:0: C0301: Line too long (124/100) (line-too-long)
-piece.py:8:0: R0902: Too many instance attributes (11/7) (too-many-instance-attributes)
+piece.py:42:29: C0303: Trailing whitespace (trailing-whitespace)
+piece.py:44:29: C0303: Trailing whitespace (trailing-whitespace)
+piece.py:46:29: C0303: Trailing whitespace (trailing-whitespace)
+piece.py:54:29: C0303: Trailing whitespace (trailing-whitespace)
+piece.py:56:29: C0303: Trailing whitespace (trailing-whitespace)
+piece.py:58:29: C0303: Trailing whitespace (trailing-whitespace)
+piece.py:287:0: C0304: Final newline missing (missing-final-newline)
+piece.py:8:0: R0902: Too many instance attributes (12/7) (too-many-instance-attributes)
 piece.py:10:4: W0105: String statement has no effect (pointless-string-statement)
 piece.py:11:4: W0105: String statement has no effect (pointless-string-statement)
 piece.py:13:4: R0913: Too many arguments (6/5) (too-many-arguments)
-piece.py:206:20: R0916: Too many boolean expressions in if statement (6/5) (too-many-boolean-expressions)
+piece.py:32:8: W0612: Unused variable 'icon' (unused-variable)
+piece.py:232:20: R0916: Too many boolean expressions in if statement (6/5) (too-many-boolean-expressions)
 ************* Module rules
 rules.py:55:4: R1705: Unnecessary "else" after "return" (no-else-return)
 
 -----------------------------------
-Your code has been rated at 8.81/10
+Your code has been rated at 8.64/10
 

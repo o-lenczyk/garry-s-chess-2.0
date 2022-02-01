@@ -29,6 +29,33 @@ class Piece(pygame.sprite.Sprite):
         self.update_row_and_column()
         self.legal_moves = []
         self.legal_captures = []
+        icon=""
+
+        match f"{color}{self.type}":
+            case "WhiteKing":
+                self.icon="♔"
+            case "WhiteQueen":
+                self.icon="♕"
+            case "WhiteRook":
+                self.icon="♖"
+            case "WhiteBishop":
+                self.icon="♗"           
+            case "WhiteKnight":
+                self.icon="♘"    
+            case "WhitePawn":
+                self.icon="♙"    
+            case "BlackKing":
+                self.icon="♚"
+            case "BlackQueen":
+                self.icon="♛"
+            case "BlackRook":
+                self.icon="♜"
+            case "BlackBishop":
+                self.icon="♝"           
+            case "BlackKnight":
+                self.icon="♞"    
+            case "BlackPawn":
+                self.icon="♟"    
 
     def update_row_and_column(self):
         where = np.where(conf.square_numbers_matrix == self.square)
@@ -152,7 +179,6 @@ class King(Piece):
         (1, 1),
     }
     move_range = 1
-    icon = "♔"
 
     def get_potential_moves(self):
         potential_moves = self.get_potential_captures()
@@ -229,7 +255,6 @@ class Queen(Piece):
         (1, 1),
     }
     move_range = 666
-    icon = "♕"
 
 
 class Rook(Piece):
@@ -237,7 +262,6 @@ class Rook(Piece):
 
     move_directions = {(-1, 0), (0, -1), (0, 1), (1, 0)}
     move_range = 8
-    icon = "♖"
 
 
 class Knight(Piece):
@@ -254,7 +278,6 @@ class Knight(Piece):
         (2, 1),
     }
     move_range = 1
-    icon = "♘"
 
 
 class Bishop(Piece):
@@ -262,4 +285,3 @@ class Bishop(Piece):
 
     move_directions = {(-1, -1), (-1, 1), (1, -1), (1, 1)}
     move_range = 8
-    icon = "♗"
