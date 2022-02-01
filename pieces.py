@@ -7,10 +7,10 @@ import rules
 
 class Piece(pygame.sprite.Sprite):
     """abstract of a piece. will contain all the variables but possible moves"""
-    """TODO: square_size can be imported from conf. x_cords, y cords can be fetched from conf.compute_square_centers_list"""
-    """TODO: use square center for image positioning instead of TOPLEFT"""
+    #TODO:  x_cords, y cords can be fetched from conf.compute_square_centers_list"""
+    #TODO: use square center for image positioning instead of TOPLEFT"""
 
-    def __init__(self, x_cords, y_cords, color, square_size, square):
+    def __init__(self, x_cords, y_cords, color, square):
         pygame.sprite.Sprite.__init__(self)
         # class name of Pawn will have color, so this code will avoid BlackBlackPawn.png
         self.type = type(self).__name__.replace("Black", "").replace("White", "")
@@ -19,7 +19,7 @@ class Piece(pygame.sprite.Sprite):
         self.image = pygame.image.load(filename)
         self.color = color
         # resize the image to size of square
-        self.image = pygame.transform.scale(self.image, (square_size, square_size))
+        self.image = pygame.transform.scale(self.image, (conf.SQUARE_SIZE, conf.SQUARE_SIZE))
         self.rect = self.image.get_rect()
         self.rect.topleft = (x_cords, y_cords)
         self.clicked = False
@@ -39,11 +39,11 @@ class Piece(pygame.sprite.Sprite):
             case "WhiteRook":
                 self.icon="♖"
             case "WhiteBishop":
-                self.icon="♗"           
+                self.icon="♗"
             case "WhiteKnight":
-                self.icon="♘"    
+                self.icon="♘"
             case "WhitePawn":
-                self.icon="♙"    
+                self.icon="♙"
             case "BlackKing":
                 self.icon="♚"
             case "BlackQueen":
@@ -51,11 +51,11 @@ class Piece(pygame.sprite.Sprite):
             case "BlackRook":
                 self.icon="♜"
             case "BlackBishop":
-                self.icon="♝"           
+                self.icon="♝"
             case "BlackKnight":
-                self.icon="♞"    
+                self.icon="♞"
             case "BlackPawn":
-                self.icon="♟"    
+                self.icon="♟"
 
     def update_row_and_column(self):
         where = np.where(conf.square_numbers_matrix == self.square)

@@ -55,9 +55,9 @@ def is_in_check_after_move(piece, next_move, checking_first_time):
     if is_under_check(piece.color, checking_first_time):
         piece.square = previous_square
         return True
-    else:
-        piece.square = previous_square
-        return False
+
+    piece.square = previous_square
+    return False
 
 
 def is_under_check(color, checking_first_time):

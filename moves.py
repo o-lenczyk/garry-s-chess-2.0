@@ -1,10 +1,11 @@
 """functions needed to move and capture pieces"""
+import sys
 import pygame
 import numpy as np
 import conf
 import rules
 import board
-import piece
+import pieces
 
 
 def pick_piece():
@@ -103,7 +104,7 @@ def autopromotion_to_queen(pawn):
     x_cords = x_cords - conf.SQUARE_SIZE / 2
     y_cords = y_cords - conf.SQUARE_SIZE / 2
     conf.all_pieces.add(
-        piece.Queen(x_cords, y_cords, pawn.color, conf.SQUARE_SIZE, pawn.square)
+        pieces.Queen(x_cords, y_cords, pawn.color, conf.SQUARE_SIZE, pawn.square)
     )
     conf.all_pieces.remove(pawn)
 
@@ -154,7 +155,7 @@ def handle_castling(king, target_king_square):
         conf.log.debug("long castle")
     else:
         conf.log.error("castling error")
-        exit()
+        sys.exit(1)
 
 
 def move_piece_to_square(piece, target_square):

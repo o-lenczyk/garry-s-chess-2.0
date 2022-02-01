@@ -1,42 +1,19 @@
 ************* Module main
-main.py:37:35: C0303: Trailing whitespace (trailing-whitespace)
-main.py:3:0: E0611: No name 'K_ESCAPE' in module 'pygame.locals' (no-name-in-module)
-main.py:3:0: E0611: No name 'KEYDOWN' in module 'pygame.locals' (no-name-in-module)
-main.py:3:0: E0611: No name 'QUIT' in module 'pygame.locals' (no-name-in-module)
-main.py:3:0: E0611: No name 'MOUSEBUTTONDOWN' in module 'pygame.locals' (no-name-in-module)
-main.py:3:0: E0611: No name 'MOUSEBUTTONUP' in module 'pygame.locals' (no-name-in-module)
-main.py:40:16: E1101: Module 'pygame' has no 'quit' member (no-member)
-main.py:41:16: R1722: Consider using sys.exit() (consider-using-sys-exit)
+main.py:4:0: E0611: No name 'K_ESCAPE' in module 'pygame.locals' (no-name-in-module)
+main.py:4:0: E0611: No name 'KEYDOWN' in module 'pygame.locals' (no-name-in-module)
+main.py:4:0: E0611: No name 'QUIT' in module 'pygame.locals' (no-name-in-module)
+main.py:4:0: E0611: No name 'MOUSEBUTTONDOWN' in module 'pygame.locals' (no-name-in-module)
+main.py:4:0: E0611: No name 'MOUSEBUTTONUP' in module 'pygame.locals' (no-name-in-module)
 ************* Module moves
-moves.py:13:8: W0621: Redefining name 'piece' from outer scope (line 7) (redefined-outer-name)
-moves.py:10:0: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
-moves.py:37:8: W0621: Redefining name 'piece' from outer scope (line 7) (redefined-outer-name)
-moves.py:57:18: W0621: Redefining name 'piece' from outer scope (line 7) (redefined-outer-name)
-moves.py:111:24: W0621: Redefining name 'piece' from outer scope (line 7) (redefined-outer-name)
-moves.py:121:22: W0621: Redefining name 'piece' from outer scope (line 7) (redefined-outer-name)
-moves.py:129:12: W0621: Redefining name 'piece' from outer scope (line 7) (redefined-outer-name)
-moves.py:157:8: R1722: Consider using sys.exit() (consider-using-sys-exit)
-moves.py:160:25: W0621: Redefining name 'piece' from outer scope (line 7) (redefined-outer-name)
-moves.py:167:30: W0621: Redefining name 'piece' from outer scope (line 7) (redefined-outer-name)
-moves.py:188:12: W0621: Redefining name 'piece' from outer scope (line 7) (redefined-outer-name)
-************* Module piece
-piece.py:10:0: C0301: Line too long (124/100) (line-too-long)
-piece.py:42:29: C0303: Trailing whitespace (trailing-whitespace)
-piece.py:44:29: C0303: Trailing whitespace (trailing-whitespace)
-piece.py:46:29: C0303: Trailing whitespace (trailing-whitespace)
-piece.py:54:29: C0303: Trailing whitespace (trailing-whitespace)
-piece.py:56:29: C0303: Trailing whitespace (trailing-whitespace)
-piece.py:58:29: C0303: Trailing whitespace (trailing-whitespace)
-piece.py:287:0: C0304: Final newline missing (missing-final-newline)
-piece.py:8:0: R0902: Too many instance attributes (12/7) (too-many-instance-attributes)
-piece.py:10:4: W0105: String statement has no effect (pointless-string-statement)
-piece.py:11:4: W0105: String statement has no effect (pointless-string-statement)
-piece.py:13:4: R0913: Too many arguments (6/5) (too-many-arguments)
-piece.py:32:8: W0612: Unused variable 'icon' (unused-variable)
-piece.py:232:20: R0916: Too many boolean expressions in if statement (6/5) (too-many-boolean-expressions)
-************* Module rules
-rules.py:55:4: R1705: Unnecessary "else" after "return" (no-else-return)
+moves.py:11:0: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
+moves.py:107:8: E1121: Too many positional arguments for constructor call (too-many-function-args)
+************* Module pieces
+pieces.py:10:5: W0511: TODO:  x_cords, y cords can be fetched from conf.compute_square_centers_list""" (fixme)
+pieces.py:11:5: W0511: TODO: use square center for image positioning instead of TOPLEFT""" (fixme)
+pieces.py:8:0: R0902: Too many instance attributes (12/7) (too-many-instance-attributes)
+pieces.py:32:8: W0612: Unused variable 'icon' (unused-variable)
+pieces.py:232:20: R0916: Too many boolean expressions in if statement (6/5) (too-many-boolean-expressions)
 
 -----------------------------------
-Your code has been rated at 8.64/10
+Your code has been rated at 9.16/10
 

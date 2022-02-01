@@ -1,4 +1,5 @@
 """main loop"""
+import sys
 import pygame
 from pygame.locals import (
     K_ESCAPE,
@@ -34,11 +35,10 @@ def main():
             # Did the user hit a key?
             elif event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
-                    RUNNING = False 
+                    RUNNING = False
             elif event.type == QUIT:
                 RUNNING = False
-                pygame.quit()
-                exit()
+                sys.exit(0)
 
         moves.move_focused_piece_to_cursor()
 

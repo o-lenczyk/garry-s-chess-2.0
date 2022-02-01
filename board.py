@@ -1,17 +1,17 @@
 """functions to set up and display the board"""
 import conf
-import piece
+import pieces
 import helpers
 
 starting_piece_order = [
-    piece.Rook,
-    piece.Knight,
-    piece.Bishop,
-    piece.Queen,
-    piece.King,
-    piece.Bishop,
-    piece.Knight,
-    piece.Rook,
+    pieces.Rook,
+    pieces.Knight,
+    pieces.Bishop,
+    pieces.Queen,
+    pieces.King,
+    pieces.Bishop,
+    pieces.Knight,
+    pieces.Rook,
 ]
 
 
@@ -31,29 +31,25 @@ def draw_board():
 def draw_pieces():
     for i in range(0, 8):
         conf.all_pieces.add(
-            starting_piece_order[i](
-                i * conf.SQUARE_SIZE, 0, "Black", conf.SQUARE_SIZE, i + 56
-            )
+            starting_piece_order[i](i * conf.SQUARE_SIZE, 0, "Black", i + 56)
         )
 
     for i in range(0, 8):
         conf.all_pieces.add(
-            piece.BlackPawn(
+            pieces.BlackPawn(
                 i * conf.SQUARE_SIZE,
                 conf.SQUARE_SIZE,
                 "Black",
-                conf.SQUARE_SIZE,
                 i + 48,
             )
         )
 
     for i in range(0, 8):
         conf.all_pieces.add(
-            piece.WhitePawn(
+            pieces.WhitePawn(
                 i * conf.SQUARE_SIZE,
                 6 * conf.SQUARE_SIZE,
                 "White",
-                conf.SQUARE_SIZE,
                 i + 8,
             )
         )
@@ -64,7 +60,6 @@ def draw_pieces():
                 i * conf.SQUARE_SIZE,
                 7 * conf.SQUARE_SIZE,
                 "White",
-                conf.SQUARE_SIZE,
                 i,
             )
         )
